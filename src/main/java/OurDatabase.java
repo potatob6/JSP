@@ -45,7 +45,6 @@ public class OurDatabase {
             db = null;
             driver = null;
             conn = null;
-
         }
         return s;
     }
