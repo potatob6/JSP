@@ -1,1 +1,1 @@
-# 本项目使用idea+meaven+jsp完成.
+# 本项目使用idea+maven+jsp完成.
