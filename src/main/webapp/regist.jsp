@@ -56,6 +56,7 @@
             position: absolute;
             right: 0; top: 0; bottom: 0; left: 300px;
             backdrop-filter: blur(4rem);
+            -webkit-backdrop-filter: blur(4rem);
             display: flex;
             justify-content: center;
             align-items: center;
