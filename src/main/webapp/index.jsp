@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图书管理系统</title>
     <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/nav.css">
 </head>
 
     <div class="video">
@@ -113,9 +112,11 @@
     <div id="navigator">
         <!--navigation section-->
         <div style="margin-left: 2rem;" class="nagivator_item" onclick="window.location.href='index.html'">首页</div>
-        <div class="nagivator_item">订购</div>
-        <div class="nagivator_item">讨论</div>
+        <div class="nagivator_item">登录</div>
+        <div class="nagivator_item">论坛</div>
         <div class="nagivator_item" onclick="aboutDis()">关于</div>
+
+
     </div>
     <div id="bigwhite"></div>
     <div id="mainText">星星图书管理系统</div>
