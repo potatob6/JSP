@@ -32,7 +32,7 @@ public class OurDatabase {
     }
 
     private OurDatabase() throws ClassNotFoundException, SQLException {
-        driver = Class.forName("com.mysql.jdbc.Driver");
+        driver = Class.forName("com.mysql.cj.jdbc.Driver");
     }
 
     private Connection getConnection() throws SQLException {
@@ -69,6 +69,53 @@ public class OurDatabase {
     }
 
     /**
+     * 添加图书
+     * @param bookBean  图书Bean
+     * @return
+     */
+    public boolean addBook(BookBean bookBean) {
+        Connection connection = null;
+        try {
+            connection = this.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into Book values(?,?,?,?,?,?,?);");
+            Class cl = bookBean.getClass();
+            setupPreparedStatement(cl, preparedStatement, bookBean);
+            int result = preparedStatement.executeUpdate();
+            System.out.println("影响行数:"+result);
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    /**
+     * 添加图书类别
+     * @param bookClassBean  图书类别Bean
+     * @return
+     */
+    public boolean addBookClass(BookClassBean bookClassBean) {
+        try{
+            Connection connection = this.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into BookClass values(?,?);");
+            Class cl = bookClassBean.getClass();
+            setupPreparedStatement(cl, preparedStatement, bookClassBean);
+            int result = preparedStatement.executeUpdate();
+            System.out.println("影响行数:"+result);
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    /**
      * 通过反射装配好PreparedStatement
      * @param cl                 类对象
      * @param preparedStatement  预处理statement
@@ -80,14 +127,13 @@ public class OurDatabase {
             Class fieldType = fields[i].getType();
             int order = ((SQLSeq) annotation).order();
             Object value = fields[i].get(bean);
-            System.out.println("order:"+order+",fieldName:"+fields[i].getName()+",value:"+value+",fieldType:"+fieldType);
             if(annotation!=null){
                 if(fieldType==String.class) {
                     preparedStatement.setString(order, (String)(value));
-                }else if(fieldType==Double.class){
-                    preparedStatement.setDouble(order, (Double)(value));
-                }else if(fieldType==Integer.class){
-                    preparedStatement.setInt(order, (Integer)(value));
+                }else if(fieldType==double.class){
+                    preparedStatement.setDouble(order, (double)(value));
+                }else if(fieldType==int.class){
+                    preparedStatement.setInt(order, (int)(value));
                 }else if(fieldType==java.sql.Date.class){
                     preparedStatement.setDate(order, (java.sql.Date)(value));
                 }else if(fieldType==BigDecimal.class){

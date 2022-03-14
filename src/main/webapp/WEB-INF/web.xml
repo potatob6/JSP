@@ -9,10 +9,18 @@
     <servlet-name>RegistUser</servlet-name>
     <servlet-class>io.github.potatob6.Servlets.RegistUser</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddBook</servlet-name>
+    <servlet-class>io.github.potatob6.Servlets.AddBook</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>RegistUser</servlet-name>
     <url-pattern>/regist</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddBook</servlet-name>
+    <url-pattern>/addBook</url-pattern>
   </servlet-mapping>
 
   <filter>
@@ -23,7 +31,15 @@
     <filter-name>RegistFilter</filter-name>
     <filter-class>io.github.potatob6.Filters.RegistFilter</filter-class>
   </filter>
+  <filter>
+    <filter-name>AddBookFilter</filter-name>
+    <filter-class>io.github.potatob6.Filters.AddBookFilter</filter-class>
+  </filter>
 
+  <filter-mapping>
+    <filter-name>AddBookFilter</filter-name>
+    <url-pattern>/addBook</url-pattern>
+  </filter-mapping>
   <filter-mapping>
     <filter-name>RegistFilter</filter-name>
     <url-pattern>/regist</url-pattern>
