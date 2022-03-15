@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Tables>
+    <Table name="Users">
+        <Property type="String">userID</Property>
+        <Property type="String">pwd</Property>
+        <Property type="String">nickname</Property>
+        <Property type="int">isVIP</Property>
+        <Property type="String">cardID</Property>
+    </Table>
+</Tables>
