@@ -39,7 +39,7 @@ public class OurDatabase {
         if(this.conn != null){
             return this.conn;
         }else{
-            this.conn = DriverManager.getConnection("jdbc:mysql://1.116.21.195:3306/library", "jsp", "1008611");
+            this.conn = DriverManager.getConnection("jdbc:mysql://175.178.183.203:3306/library", "jsp", "1008611");
             return this.conn;
         }
     }

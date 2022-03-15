@@ -100,12 +100,12 @@
           </div>
           <div class="JuddingFace">
             <div class="register box">
-              <div class="form">
+              <form class="form" action="/JSP/regist" method="post">
                 <h2>注册</h2>
                 <div class="inputBox">
                   <input
                     type="text"
-                    name="user"
+                    name="username"
                     placeholder="请输入用户名:8~16位"
                     id="register_name"
                   />
@@ -114,8 +114,9 @@
                 <div class="inputBox">
                   <input
                     type="text"
-                    placeholder="请填写注册邮箱"
-                    id="register_email"
+                    placeholder="昵称"
+                    id="nickname"
+                    name="nickname"
                   />
                   <span id="s_email" class="error"></span>
                 </div>
@@ -124,6 +125,7 @@
                     type="text"
                     placeholder="请输入手机电话"
                     id="register_phone"
+                    name="phone"
                   />
                   <span id="s_telphone" class="error"></span>
                 </div>
@@ -132,6 +134,7 @@
                     type="password"
                     placeholder="请输入密码"
                     id="register_pwd"
+                    name="pwd"
                   />
                   <span id="s_password" class="error"></span>
                 </div>
@@ -145,7 +148,7 @@
                 </div>
                 <div class="inputBox Center">
                   <input
-                    type="Button"
+                    type="submit"
                     placeholder="注册"
                     id="ChangeButton"
                     value="注册"
@@ -156,7 +159,7 @@
                   返回登录?
                   <a href="#" class="ReturnLogin">点击这里</a>
                 </p>
-              </div>
+              </form>
             </div>
             <div class="login box">
               <div class="form">
