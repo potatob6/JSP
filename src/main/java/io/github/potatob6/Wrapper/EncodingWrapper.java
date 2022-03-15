@@ -21,10 +21,10 @@ public class EncodingWrapper extends HttpServletRequestWrapper {
 
         String s1 = super.getParameter(name);
         try {
-            return new String(s1.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        } catch (NullPointerException e){
+            return new String(s1.getBytes(StandardCharsets.ISO_8859_1), "utf-8");
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 }
