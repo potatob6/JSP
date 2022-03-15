@@ -2,6 +2,7 @@ package io.github.potatob6.Servlets;
 
 import io.github.potatob6.Models.BookBean;
 import io.github.potatob6.Models.OurDatabase;
+import io.github.potatob6.Wrapper.EncodingWrapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,13 +21,13 @@ public class AddBook extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
-        String bookID = req.getParameter("bookID");
-        String classID = req.getParameter("classID");
-        String bookName = req.getParameter("bookName");
-        System.out.println("bookName:"+bookName);
-        String publisher = req.getParameter("publisher");
-        BigDecimal originPrice = new BigDecimal(req.getParameter("originPrice"));
-        int storageCount = Integer.parseInt(req.getParameter("storageCount"));
+        EncodingWrapper encodingWrapper = new EncodingWrapper(req);
+        String bookID = encodingWrapper.getParameter("bookID");
+        String classID = encodingWrapper.getParameter("classID");
+        String bookName = encodingWrapper.getParameter("bookName");
+        String publisher = encodingWrapper.getParameter("publisher");
+        BigDecimal originPrice = new BigDecimal(encodingWrapper.getParameter("originPrice"));
+        int storageCount = Integer.parseInt(encodingWrapper.getParameter("storageCount"));
 
         BookBean bookBean = new BookBean();
         Calendar nowDay = Calendar.getInstance();

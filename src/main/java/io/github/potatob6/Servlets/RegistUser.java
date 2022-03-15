@@ -2,12 +2,14 @@ package io.github.potatob6.Servlets;
 
 import io.github.potatob6.Models.OurDatabase;
 import io.github.potatob6.Models.UserBean;
+import io.github.potatob6.Wrapper.EncodingWrapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 用户注册Servlet
@@ -15,10 +17,14 @@ import java.io.IOException;
 public class RegistUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-        String username = req.getParameter("username");
-        String pwd = req.getParameter("pwd");
-        String nickname = req.getParameter("nickname");
+        EncodingWrapper encodingWrapper = new EncodingWrapper(req);
+        String username = encodingWrapper.getParameter("username");
+        String pwd = encodingWrapper.getParameter("pwd");
+        String nickname = encodingWrapper.getParameter("nickname");
+
+        System.out.println("用户名："+username);
+        System.out.println("密码:"+pwd);
+        System.out.println("昵称:"+nickname);
 
         UserBean userBean = new UserBean();
         userBean.setUserID(username);
@@ -27,7 +33,9 @@ public class RegistUser extends HttpServlet {
 
         OurDatabase ourDatabase = OurDatabase.getDataBase();
         boolean result = ourDatabase.addUser(userBean);
-        System.out.println("添加用户"+result);
         resp.getWriter().write("添加用户"+result);
+        resp.getOutputStream().close();
+        super.doPost(req, resp);
+
     }
 }
