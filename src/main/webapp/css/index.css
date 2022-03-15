@@ -6,6 +6,7 @@
 
 body {
     height: 1000px;
+    overflow-x: hidden;
 }
 
 .a1 {
@@ -96,7 +97,6 @@ body {
     left: 0;
     bottom: 0;
     position: fixed;
-    z-index: 9;
     text-align: center;
     line-height: 100vh;
     font-size: 150px;
@@ -248,7 +248,6 @@ button:hover {
     height: 100vh;
     display: flex;
     justify-content: center;
-    console.log();
     align-items: center;
 }
 
@@ -761,4 +760,365 @@ header .a1:nth-child(1){
     font-family: sans-serif;
 }
 
+/******************************a4************************************************/
+/******************************a4************************************************/
+/******************************a4************************************************//******************************a4************************************************/
+/******************************a4************************************************/
+/******************************a4************************************************/
 
+header .a1:nth-child(4) .container {
+    display: contents;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 0;
+    flex-direction: row;
+}
+
+header .a1:nth-child(4) .container .box {
+    position: relative;
+    width: 320px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 30px;
+}
+
+header .a1:nth-child(4)  .container .box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    transform: skewX(15deg);
+    transition: 0.5s;
+}
+
+header .a1:nth-child(4)  .container .box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    transform: skewX(15deg);
+    filter: blur(30px);
+    transition: 0.5s;
+}
+
+header .a1:nth-child(4)  .container .box:nth-child(3):before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    transform: skewX(-15deg);
+    transition: 0.5s;
+}
+
+header .a1:nth-child(4)  .container .box:nth-child(3):after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    transform: skewX(-15deg);
+    filter: blur(30px);
+    transition: 0.5s;
+}
+
+header .a1:nth-child(4) .container .box:hover:before,
+header .a1:nth-child(4)  .container .box:hover:after {
+    transform: skewX(0deg);
+    left: 20px;
+    width: calc(100% - 90px);
+}
+
+header .a1:nth-child(4)  .container .box:nth-child(1)::before,
+header .a1:nth-child(4) .container .box:nth-child(1):after {
+    background-image: linear-gradient(315deg, #ffbc00, #ff0058);
+}
+
+header .a1:nth-child(4)  .container .box:nth-child(2)::before,
+header .a1:nth-child(4) .container .box:nth-child(2):after {
+    background-image: linear-gradient(315deg, #03a9f4, #ff0058);
+}
+
+header .a1:nth-child(4)  .container .box:nth-child(3)::before,
+header .a1:nth-child(4)  .container .box:nth-child(3):after {
+    background-image: linear-gradient(315deg, #4dff03, #00d0ff);
+}
+
+header .a1:nth-child(4)  .container .box span {
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 20;
+}
+
+header .a1:nth-child(4)  .container .box span::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: 0.5s;
+    animation: animate 2s ease-in-out infinite;
+}
+
+header .a1:nth-child(4)  .container .box:hover span::before {
+    top: -50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+}
+header .a1:nth-child(4){
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: url("../images/background3.jpg") center center no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+@keyframes animate {
+    0%,
+    100% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+header .a1:nth-child(4) .container .box span::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: 0.5s;
+    animation: animate 2s ease-in-out infinite;
+    animation-delay: -1s;
+}
+
+header .a1:nth-child(4) .container .box:hover span::after {
+    bottom: -50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+}
+
+header .a1:nth-child(4) .container .box .content {
+    z-index: 1;
+    position: relative;
+    left: 0;
+    color: #fff;
+    padding: 20px 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition: 0.5s;
+}
+
+header .a1:nth-child(4)  .container .box:hover .content {
+    left: -25px;
+    padding: 60px 40px;
+}
+
+header .a1:nth-child(4) .container .box .content h2 {
+    font-size: 1.4em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+header .a1:nth-child(4) .container .box .content p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    line-height: 1.2em;
+}
+
+header .a1:nth-child(4) .container .box .content a {
+    color: #111;
+    background-color: #fff;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+
+
+
+
+
+header .a1:nth-child(5) input {
+    height: 100%;
+    width: 100%;
+}
+
+header .a1:nth-child(5) #select {
+    display: none;
+}
+
+header .a1:nth-child(5) .card {
+    width: 400px;
+    height: 600px;
+    background-color: #ffffff;
+    box-shadow: 0 0 50px 10px rgba((0), 0, 0, .3);
+    transition: all .6s;
+    text-align: center;
+    z-index: 20;
+}
+
+header .a1:nth-child(5) .img {
+    width: 400px;
+    height: 230px;
+    background: url('../images/bird2.png') no-repeat center center;
+    background-size: cover;
+    transition: all .6s;
+    z-index: 20;
+}
+
+header .a1:nth-child(5) .title {
+    font-size: 30px;
+    color: rgba(88, 88, 88);
+    margin: 30px 0 15px 0;
+    transition: all .6s;
+    transition-delay: 3s;
+    z-index: 20;
+}
+
+header .a1:nth-child(5) .desc {
+    width: 400px;
+    margin-bottom: 20px;
+    padding: 0 30px;
+    line-height: 25px;
+    opacity: 1;
+    color: rgba(175, 175, 175);
+    z-index: 20;
+}
+
+header .a1:nth-child(5) .content {
+    display: none;
+    height: 1300px;
+    text-align: center;
+    padding: 0 20%;
+    line-height: 40px;
+    background-color: #ffffffff;
+    z-index: 20;
+}
+
+header .a1:nth-child(5) .content p {
+    margin: 30px 0;
+    text-align: left;
+    display: table;
+}
+
+header .a1:nth-child(5) .icon {
+    width: 300px;
+    font-size: 22px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+header .a1:nth-child(5) icon i {
+    margin: 10px;
+    font-size: 22px;
+    color: red;
+}
+
+header .a1:nth-child(5) #select_label {
+    display: block;
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    z-index: 999;
+}
+
+header .a1:nth-child(5) #select:checked~.card #select_label {
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+}
+
+header .a1:nth-child(5) #select:checked~.card {
+    width: 90vw;
+    height: 100vh;
+    z-index: 20;
+    overflow-y:auto!important;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch!important;
+}
+header .a1:nth-child(5) #select:checked~.card .img {
+    width: 100vw;
+    height: 650px;
+    overflow: hidden;
+    z-index: 20;
+}
+
+header .a1:nth-child(5) #select:checked~.card .title {
+    transform: translate(-400px);
+    color: #fff;
+    font-size: 70px;
+    z-index: 20;
+}
+
+header .a1:nth-child(5) #select:checked~.card .desc {
+    display: none;
+    opacity: 0;
+    z-index: 20;
+}
+
+header .a1:nth-child(5) #select:checked~.card .icon {
+    display: none;
+    z-index: 20;
+}
+
+header .a1:nth-child(5) #select:checked~.card .content {
+    display: block;
+    animation: content .2s;
+    transform: translateY(-50px);
+    z-index: 20;
+}
+header .a1:nth-child(5){
+    background: url("../images/background4.jpg") center center no-repeat;
+    background-size: cover;
+}
+@keyframes content {
+    from {
+        opacity: 0;
+        transform: translateY(0px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50px);
+    }
+}
