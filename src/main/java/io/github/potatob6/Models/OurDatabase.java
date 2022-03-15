@@ -156,12 +156,15 @@ public class OurDatabase {
         String userName = userBean.getUserID();
         try {
             Connection connection = this.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from Users where userID=\"?\"");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from Users where userID=?");
             preparedStatement.setString(1, userName);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            UserBean userBean1 = (UserBean) fullSetupSingleByQuery(resultSet, UserBean.class);
-            return userBean1;
+            if(resultSet.next()) {
+                UserBean userBean1 = (UserBean) fullSetupSingleByQuery(resultSet, UserBean.class);
+                return userBean1;
+            }
+            return null;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
