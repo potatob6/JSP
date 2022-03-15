@@ -2,6 +2,7 @@ package io.github.potatob6.Servlets;
 
 import io.github.potatob6.Models.BookBean;
 import io.github.potatob6.Models.OurDatabase;
+import io.github.potatob6.Wrapper.EncodingResponse;
 import io.github.potatob6.Wrapper.EncodingWrapper;
 
 import javax.servlet.ServletException;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.Writer;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.Formatter;
@@ -20,7 +23,6 @@ import java.util.Formatter;
 public class AddBook extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
         EncodingWrapper encodingWrapper = new EncodingWrapper(req);
         String bookID = encodingWrapper.getParameter("bookID");
         String classID = encodingWrapper.getParameter("classID");
@@ -47,5 +49,9 @@ public class AddBook extends HttpServlet {
 
         OurDatabase ourDatabase = OurDatabase.getDataBase();
         boolean result = ourDatabase.addBook(bookBean);
+        EncodingResponse encodingResponse = new EncodingResponse(resp);
+        resp.setContentType("text/html; charset=UTF-8");
+        encodingResponse.println("影响行数:"+result);
+        resp.getOutputStream().close();
     }
 }

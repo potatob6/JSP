@@ -2,6 +2,7 @@ package io.github.potatob6.Servlets;
 
 import io.github.potatob6.Models.OurDatabase;
 import io.github.potatob6.Models.UserBean;
+import io.github.potatob6.Wrapper.EncodingResponse;
 import io.github.potatob6.Wrapper.EncodingWrapper;
 
 import javax.servlet.ServletException;
@@ -33,9 +34,9 @@ public class RegistUser extends HttpServlet {
 
         OurDatabase ourDatabase = OurDatabase.getDataBase();
         boolean result = ourDatabase.addUser(userBean);
-        resp.getWriter().write("添加用户"+result);
+        EncodingResponse encodingResponse = new EncodingResponse(resp);
+        resp.setContentType("text/html; charset=UTF-8");
+        encodingResponse.println("添加用户"+result);
         resp.getOutputStream().close();
-        super.doPost(req, resp);
-
     }
 }
