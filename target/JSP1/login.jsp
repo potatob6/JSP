@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="网上购物商城" />
-    <meta name="keywords" content="网上购物,网上商城,家电,手机,电脑,服装." />
+    <meta name="description" content="星星图书管理系统" />
+    <meta name="keywords" content="星星,管理,图书,理想,现实,知识." />
     <title>电商网站</title>
     <link rel="stylesheet" href="./css/login.css" />
     <link rel="stylesheet" href="./css/nav.css" />
@@ -14,6 +14,8 @@
       href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
       rel="stylesheet"
     />
+    <link rel="icon" href="./favicon.ico" mce_href="./favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./favicon.ico" mce_href="./favicon.ico" type="image/x-icon">
   </head>
   <body>
     <!--navigation section-->
@@ -21,8 +23,6 @@
       <div class="NavNoChange_fr">
         <p class="NavNoChange_fl">
           <a href="#">中国大陆</a>
-          <a href="#" id="login">登录</a>
-          <a href="#" id="reg">注册</a>
         </p>
         <div class="NavNoChange_search">
           <form action="#" method="get" class="NavNoChange_fl2">
@@ -35,13 +35,6 @@
           <a href="#" class="er1"
             ><i class="fa fa-qrcode" aria-hidden="true"></i
           ></a>
-          <div class="topbar-cart pull-right">
-            <a href="javascript:;" class="btn cart">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              购物车(<span>0</span>)
-            </a>
-            <a href="#" class="er1"><i></i>联系客服</a>
-          </div>
           <p>
             <a href="#"><img src="" /></a>
           </p>
@@ -49,7 +42,7 @@
       </div>
       <div class="nav-menu flex-row">
         <div class="nav-brand">
-          <a href="#" class="text-gray">星包客</a>
+          <a href="#" class="text-gray">星之光</a>
         </div>
         <div class="toggle-collapse">
           <div class="toggle-icons">
@@ -66,22 +59,13 @@
                 <a href="#" id="linkedA">我的空间</a>
               </li>
               <li class="nav-link">
-                <a href="#" id="linkedA">星包超市</a>
+                <a href="#" id="linkedA">个人登录</a>
               </li>
               <li class="nav-link">
-                <a href="#" id="linkedA">淘你喜欢</a>
+                <a href="#" id="linkedA">图书查询</a>
               </li>
               <li class="nav-link">
-                <a href="#" id="linkedA">天天特卖</a>
-              </li>
-              <li class="nav-link">
-                <a href="#" id="linkedA">智能生活</a>
-              </li>
-              <li class="nav-link">
-                <a href="#" id="linkedA">星包云</a>
-              </li>
-              <li class="nav-link">
-                <a href="#" id="linkedA">星包客会员</a>
+                <a href="#" id="linkedA">星星云</a>
               </li>
             </ul>
           </div>
@@ -108,11 +92,11 @@
             <img src="./images/water.png" alt="" id="water" />
             <img src="./images/moon.png" alt="" id="moon" />
             <img
-              src="../img/mountains_behind.png"
+              src="./images/mountains_behind.png"
               alt=""
               id="mountains_behind"
             />
-            <img src="../img/mountains_front.png" alt="" id="mountains_front" />
+            <img src="./images/mountains_front.png" alt="" id="mountains_front" />
           </div>
           <div class="JuddingFace">
             <div class="register box">

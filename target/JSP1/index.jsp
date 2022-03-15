@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图书管理系统</title>
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="icon" href="./favicon.ico" mce_href="./favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./favicon.ico" mce_href="./favicon.ico" type="image/x-icon">
+
 </head>
 
     <div class="video">
@@ -22,11 +25,72 @@
         <div style="font-size: 30px;">向下滑动</div>
     </div>
 <header>
-    <div class="a1" style="background-color:#cadefc">
-        <div>
-            <h1>水晶虾饺</h1>
-        </div>
-        <img src="./images/sjj.jpg" alt="">
+    <div class="a1">
+        <section id="timeline">
+            <div class="timeline">
+                <canvas id="cvs3"></canvas>
+
+                <article>
+                    <h2>Education</h2>
+
+                    <figure>
+                        <figcaption>Web Design</figcaption>
+                        <h6>using HTML CSS Js</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, dicta, nisi! Ad amet asperiores
+                            distinctio dolores, dolorum ea error esse ipsa laudantium placeat, praesentium quae quod repellat
+                            veritatis vero voluptas!</p>
+                    </figure>
+
+                    <figure>
+                        <figcaption>Web Design</figcaption>
+                        <h6>using HTML CSS Js</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, dicta, nisi! Ad amet asperiores
+                            distinctio dolores, dolorum ea error esse ipsa laudantium placeat, praesentium quae quod repellat
+                            veritatis vero voluptas!</p>
+                    </figure>
+
+                    <figure>
+                        <figcaption>Web Design</figcaption>
+                        <h6>using HTML CSS Js</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, dicta, nisi! Ad amet asperiores
+                            distinctio dolores, dolorum ea error esse ipsa laudantium placeat, praesentium quae quod repellat
+                            veritatis vero voluptas!</p>
+                    </figure>
+
+                </article>
+
+                <article>
+                    <h2>Work</h2>
+                    <figure>
+                        <figcaption>Graphic & Web</figcaption>
+                        <h6>Learn Today</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam debitis delectus deserunt
+                            dicta doloribus, ducimus eligendi nemo neque obcaecati officiis, quaerat unde. Aliquid consectetur
+                            dicta dolorem ex facere veritatis!</p>
+                    </figure>
+
+                    <figure>
+                        <figcaption>Graphic & Web</figcaption>
+                        <h6>Learn Today</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam debitis delectus deserunt
+                            dicta doloribus, ducimus eligendi nemo neque obcaecati officiis, quaerat unde. Aliquid consectetur
+                            dicta dolorem ex facere veritatis!</p>
+                    </figure>
+
+                    <figure>
+                        <figcaption>Graphic & Web</figcaption>
+                        <h6>Learn Today</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam debitis delectus deserunt
+                            dicta doloribus, ducimus eligendi nemo neque obcaecati officiis, quaerat unde. Aliquid consectetur
+                            dicta dolorem ex facere veritatis!</p>
+                    </figure>
+
+                </article>
+
+                <br style="clear:both">
+            </div>
+
+        </section>
     </div>
     <div class="a1 l" >
         <div class="Fragram1">
@@ -36,10 +100,10 @@
                 </div>
             </section>
             <section class="section2">
-                <h3 class="text" id="text">A new adult romance from Entangled's Embrace imprint...
-                    Some things can never be fixed...
-                    Nothing feels right. Not since my best friend died and I screwed up the one promise he asked me to make. The past follows me everywhere, tangling me up like weeds, reminding me that my life is empty. So goddamn empty.
-                    Then she walks into the bar, all bright beauty and sweet lips made for kissing.
+                <h3 class="text" id="text">A new adult romance from Entangled's Embrace imprint...<br>
+                    Some things can never be fixed...<br>
+                    Nothing feels right.<br>
+                    Not since my best friend died and I screwed up the one promise he asked me to make. The past follows me everywhere, tangling me up like weeds, reminding me that my life is empty.
                 </h3>
             </section>
         </div>
@@ -136,6 +200,8 @@
     <div id="whiteBoard">
         <div style="background-color: white;width: 300vh;height: 300vh;border-radius: 50%;"></div>
     </div>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="./Javascript/time.js"></script>
 <script>
     var text=document.querySelector('#text');
     text.innerHTML=text.textContent.replace(/\S/g,"<span>$&</span>")
@@ -145,6 +211,8 @@
             letters[i].classList.add('active')
         })
     }
+
+
 </script>
     <script src="./Javascript/animation.js"></script>
     <script>
@@ -157,8 +225,6 @@
             $("about").style.opacity = 1
             $("about").style.zIndex = 9
         }
-    </script>
-    <script>
         //获取对象
         function $(e) {
             return document.getElementById(e)
@@ -176,8 +242,6 @@
         var pin = $("pin")
         var mainCont1 = $("mainCont1")
         var tips = $("tips")
-    </script>
-    <script>
         //Init
         mainCont1.style.marginTop = (7200 + vh) + "px"
 
@@ -187,8 +251,6 @@
                 window.location.href = "purchase.html"
             }, 1000);
         }
-    </script>
-    <script>
         onLoadCallBack = (e) => {
                 if (scrollTop <= 300) {
                     $("tips").style.transform = "scale(1)"
@@ -232,8 +294,6 @@
         function mainCont1Width(e, r) {
             e.style.width = r[0] + "%"
         }
-    </script>
-    <script>
         //创建动画
         var p1 = create_LINEAR_ANIMATION(
             callback = a1left, pre = "", suf = "",

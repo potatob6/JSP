@@ -656,3 +656,109 @@ transform: rotate(42deg);*/
         transform: translateY(-300px) scaleX(10);
     }
 }
+
+/******************************a1************************************************/
+/******************************a1************************************************/
+/******************************a1************************************************//******************************a1************************************************/
+/******************************a1************************************************/
+/******************************a1************************************************/
+
+header .a1:nth-child(1) #timeline {
+    padding-top: 5%;
+}
+
+header .a1:nth-child(1) .timeline{
+    height: 100%;
+    position: relative;
+}
+
+
+header .a1:nth-child(1) .timeline canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+header .a1:nth-child(1) .timeline figcaption{
+    font-weight: 400;
+    font-family: sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+
+}
+
+header .a1:nth-child(1) .timeline h2{
+    font-weight: 400;
+    font-size: 30px;
+    padding-bottom: 100px;
+    color: #b2cde9;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+header .a1:nth-child(1) .timeline h6{
+    color: #0090f5;
+    font-family: sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+header .a1:nth-child(1) .timeline p{
+    font-weight: 400;
+    font-family: sans-serif;
+    padding: 3px 0 20px 0;
+    color: #575757;
+    text-align: justify;
+    width: 70%;
+}
+
+header .a1:nth-child(1) .timeline figure{
+    float: right;
+    width: 100%;
+}
+
+header .a1:nth-child(1) .timeline article{
+    position: relative;
+    width: 38%;
+    overflow: hidden;
+    margin-bottom: 100px;
+}
+
+header .a1:nth-child(1) .timeline article:first-of-type {
+    float: left;
+    text-align: right;
+}
+
+header .a1:nth-child(1) .timeline article:first-of-type p,
+header .a1:nth-child(1) .timeline article:first-of-type figure{
+    float: right;
+}
+
+
+header .a1:nth-child(1) .timeline article:last-of-type{
+    float: right;
+}
+
+.timeline article:last-of-type h2{
+    color: #c6e0aa;
+}
+
+.timeline article:last-of-type h6,
+.timeline article:last-of-type a{
+    color: #c6e0aa;
+}
+
+.timeline article:last-of-type a:hover{
+    color: #95d40d;
+}
+header .a1:nth-child(1){
+    color: #2c2c2c;
+    min-width: 600px;
+    height: 100%;
+    background: white;
+    font-family: sans-serif;
+}
+
+
