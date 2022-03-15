@@ -50,7 +50,7 @@ window.onload = function() {
         $("#water").fadeOut(3000);
         $(".Background").css("animation", "bganimation 15s infinite");
         $("a").css("color", "#fff");
-        $('a#linkedA').hover(function() {　　　　
+        $('a#linkedA').hover(function() {
             $(this).css("color", "#fff");
         })
 
@@ -87,9 +87,9 @@ window.onload = function() {
         $("#cloud").css("z-index", "0");
         $(".Background").css("animation", "bganimation 15s infinite");
         $("a").css("color", "#000");
-        $('a#linkedA').hover(function() {　　　　
+        $('a#linkedA').hover(function() {
             $(this).css("color", "#fff");
-        }, function() {　　　　
+        }, function() {
             $(this).css("color", "#000");
         })
     })
@@ -169,7 +169,7 @@ function CheckRePassword() {
 
 
     if (repassword === password && repassword != "") {
-        s_repassword.innerHTML = "<img src='../img/gou.png' width='35px' height='35px'/>";
+        s_repassword.innerHTML = "<img src='./images/gou.png' width='35px' height='35px'/>";
         return true;
     } else {
         s_repassword.innerHTML = "两次密码输入不一致！";

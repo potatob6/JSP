@@ -4,8 +4,10 @@ import io.github.potatob6.Annos.SQLSeq;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class OurDatabase {
     private static OurDatabase db = null;
@@ -39,7 +41,7 @@ public class OurDatabase {
         if(this.conn != null){
             return this.conn;
         }else{
-            this.conn = DriverManager.getConnection("jdbc:mysql://1.116.21.195:3306/library", "jsp", "1008611");
+            this.conn = DriverManager.getConnection("jdbc:mysql://175.178.183.203:3306/library", "jsp", "1008611");
             return this.conn;
         }
     }
@@ -142,6 +144,87 @@ public class OurDatabase {
                     preparedStatement.setBoolean(order, (boolean) (value));
                 }
             }
+        }
+    }
+
+    /**
+     * 查询特定的用户通过用户ID
+     * @param userBean  用户Bean，需要提供userID属性
+     * @return          返回 {@link UserBean}
+     */
+    public UserBean querySpecificUserByUserID(UserBean userBean){
+        String userName = userBean.getUserID();
+        try {
+            Connection connection = this.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from Users where userID=?");
+            preparedStatement.setString(1, userName);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                UserBean userBean1 = (UserBean) fullSetupSingleByQuery(resultSet, UserBean.class);
+                return userBean1;
+            }
+            return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+    private ArrayList<Object> fullSetupMultiByQuery(ResultSet resultSet, Class cl) throws SQLException {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        while(resultSet.next()){
+            Object object = fullSetupSingleByQuery(resultSet, cl);
+            arrayList.add(object);
+        }
+        return arrayList;
+    }
+
+    /**
+     * 通过反射装配全一个Bean,即{@link ResultSet}返回的列数要与Bean中SQLSeq定义的数量一样
+     * @param resultSet  {@link ResultSet}结果集
+     * @param cl         {@link Class} Bean的类型
+     * @return           {@link Object} 装配好的Bean，可以直接强制转换为需要的Bean类型
+     */
+    private Object fullSetupSingleByQuery(ResultSet resultSet, Class cl) {
+        try {
+            Object bean = cl.getDeclaredConstructor().newInstance();
+            Field[] fields = cl.getFields();
+            for(int i = 0;i<fields.length;i++){
+                SQLSeq annotation = fields[i].getAnnotation(SQLSeq.class);
+                Class fieldType = fields[i].getType();
+                if(annotation!=null){
+                    int order = annotation.order();
+                    if(fieldType==String.class) {
+                        fields[i].set(bean, resultSet.getString(order));
+                    }else if(fieldType==double.class){
+                        fields[i].setDouble(bean, resultSet.getDouble(order));
+                    }else if(fieldType==int.class){
+                        fields[i].setInt(bean, resultSet.getInt(order));
+                    }else if(fieldType==java.sql.Date.class){
+                        fields[i].set(bean, resultSet.getDate(order));
+                    }else if(fieldType==BigDecimal.class){
+                        fields[i].set(bean, resultSet.getBigDecimal(order));
+                    }else if(fieldType==boolean.class){
+                        fields[i].setBoolean(bean, resultSet.getBoolean(order));
+                    }
+                }
+            }
+            return bean;
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

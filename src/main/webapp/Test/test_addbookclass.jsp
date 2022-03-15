@@ -8,13 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/JSP/addBook" method="POST">
-        书号:<input type="text" name="bookID"/><br>
+    <form action="/JSP/addbookclass" method="POST">
         分类ID:<input type="text" name="classID"/><br>
-        书名:<input type="text" name="bookName" /><br>
-        出版社:<input type="text" name="publisher" /><br>
-        价格:<input type="text" name="originPrice" /><br>
-        数量:<input type="number" name="storageCount" /><br>
+        分类名:<input type="text" name="className"/><br>
         <button>提交</button>
     </form>
 </body>
