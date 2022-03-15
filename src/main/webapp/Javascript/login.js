@@ -50,7 +50,7 @@ window.onload = function() {
         $("#water").fadeOut(3000);
         $(".Background").css("animation", "bganimation 15s infinite");
         $("a").css("color", "#fff");
-        $('a#linkedA').hover(function() {　　　　
+        $('a#linkedA').hover(function() {
             $(this).css("color", "#fff");
         })
 
@@ -87,9 +87,9 @@ window.onload = function() {
         $("#cloud").css("z-index", "0");
         $(".Background").css("animation", "bganimation 15s infinite");
         $("a").css("color", "#000");
-        $('a#linkedA').hover(function() {　　　　
+        $('a#linkedA').hover(function() {
             $(this).css("color", "#fff");
-        }, function() {　　　　
+        }, function() {
             $(this).css("color", "#000");
         })
     })

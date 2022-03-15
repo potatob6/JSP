@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/login.css" />
     <link rel="stylesheet" href="./css/nav.css" />
     <link
-      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
+      href="./css/all.css"
       rel="stylesheet"
     />
     <link rel="icon" href="./favicon.ico" mce_href="./favicon.ico" type="image/x-icon">
@@ -209,7 +209,7 @@
         </div>
       </section>
     </main>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="./Javascript/jquery.js"></script>
     <script src="./Javascript/login.js"></script>
   </body>
 </html>
