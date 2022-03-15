@@ -35,6 +35,7 @@ public class RegistUser extends HttpServlet {
         boolean result = ourDatabase.addUser(userBean);
         EncodingResponse encodingResponse = new EncodingResponse(resp);
         resp.setContentType("text/html; charset=UTF-8");
+        //TODO 跳转到注册成功的页面
         encodingResponse.println("添加用户"+result);
         resp.getOutputStream().close();
     }
