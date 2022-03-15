@@ -160,10 +160,7 @@ public class OurDatabase {
             preparedStatement.setString(1, userName);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            UserBean userBean1 = null;
-            while(resultSet.next()){
-
-            }
+            UserBean userBean1 = (UserBean) fullSetupSingleByQuery(resultSet, UserBean.class);
             return userBean1;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -173,8 +170,10 @@ public class OurDatabase {
     private ArrayList<Object> fullSetupMultiByQuery(ResultSet resultSet, Class cl) throws SQLException {
         ArrayList<Object> arrayList = new ArrayList<>();
         while(resultSet.next()){
-
+            Object object = fullSetupSingleByQuery(resultSet, cl);
+            arrayList.add(object);
         }
+        return arrayList;
     }
 
     /**
