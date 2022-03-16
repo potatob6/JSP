@@ -162,31 +162,29 @@
               </form>
             </div>
             <div class="login box">
-              <div class="form">
+              <form class="form" action="/JSP/login" method="post">
                 <h2>登录</h2>
-                <form action="">
                   <div class="inputBox">
                     <input
                       type="text"
-                      name="user"
-                      placeholder="姓名"
+                      placeholder="用户名"
                       id="login_name"
+                      name="userID"
                     />
                   </div>
                   <div class="inputBox">
                     <input
                       type="password"
-                      name="pwd"
                       placeholder="请输入密码"
                       id="login_pwd"
+                      name="pwd"
                     />
                   </div>
                   <div class="inputBox Center">
                     <input
-                      type="Button"
+                      type="submit"
                       placeholder="登录"
                       id="LoginButton"
-                      value="登录"  href="index.html"
                     />
                   </div>
                   <p class="forget Center">
@@ -197,8 +195,7 @@
                     没有密码?
                     <a href="#" class="RegisterButton">注册</a>
                   </p>
-                </form>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -210,6 +207,5 @@
       </section>
     </main>
     <script src="./Javascript/jquery.js"></script>
-    <script src="./Javascript/login.js"></script>
   </body>
 </html>
