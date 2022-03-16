@@ -66,7 +66,6 @@ public class UserBean {
         this.balance = balance;
     }
 
-    @AutoIncrement
     @SQLSeq(order = 1)
     public String userID;
     @SQLSeq(order = 2)
