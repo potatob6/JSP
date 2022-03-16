@@ -313,4 +313,13 @@ public class OurDatabase {
             return null;
         }
     }
+
+    /**
+     *
+     * @return  返回一个列表，里面全是用户的借阅记录，包含书名信息
+     */
+    public ArrayList<BorrowBean> queryUserAllBorrowed(UserBean userBean) {
+        //TODO 完成查询用户借阅情况
+        return null;
+    }
 }
