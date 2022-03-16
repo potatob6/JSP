@@ -227,4 +227,21 @@ public class OurDatabase {
             return null;
         }
     }
+
+    /**
+     * 查询所有图书信息
+     * @return
+     */
+    public ResultSet queryAllBook(){
+        Connection connection = null;
+        try {
+            connection = this.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from Book;");
+            ResultSet result = preparedStatement.executeQuery();
+            return result;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
 }
