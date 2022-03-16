@@ -17,6 +17,10 @@
     <servlet-name>AddBookClass</servlet-name>
     <servlet-class>io.github.potatob6.Servlets.AddBookClass</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>QueryUser</servlet-name>
+    <servlet-class>io.github.potatob6.Servlets.Login</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>RegistUser</servlet-name>
@@ -29,6 +33,10 @@
   <servlet-mapping>
     <servlet-name>AddBookClass</servlet-name>
     <url-pattern>/addbookclass</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryUser</servlet-name>
+    <url-pattern>/queryUser</url-pattern>
   </servlet-mapping>
 
   <filter>
@@ -47,6 +55,10 @@
     <filter-name>AddBookClassFilter</filter-name>
     <filter-class>io.github.potatob6.Filters.AddBookClassFilter</filter-class>
   </filter>
+  <filter>
+    <filter-name>QueryUser</filter-name>
+    <filter-class>io.github.potatob6.Filters.LoginFilter</filter-class>
+  </filter>
 
   <filter-mapping>
     <filter-name>AddBookFilter</filter-name>
@@ -63,6 +75,10 @@
   <filter-mapping>
     <filter-name>AddBookClassFilter</filter-name>
     <url-pattern>/addbookclass</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>QueryUser</filter-name>
+    <url-pattern>/queryUser</url-pattern>
   </filter-mapping>
 
 </web-app>
