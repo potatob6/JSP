@@ -1,11 +1,14 @@
 package io.github.potatob6.Models;
 
+import io.github.potatob6.Annos.AutoIncrement;
 import io.github.potatob6.Annos.SQLSeq;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 
 public class BookBean {
+
+    @AutoIncrement
     @SQLSeq(order = 1)
     public String bookID;
 
