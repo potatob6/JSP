@@ -16,9 +16,9 @@ public class AddBookClassFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-        String classID = httpServletRequest.getParameter("classID");
+//        String classID = httpServletRequest.getParameter("classID");
         String className = httpServletRequest.getParameter("className");
-        if(classID == null || className == null) {
+        if(className == null) {
             //不满足条件
         }else{
             filterChain.doFilter(servletRequest, servletResponse);

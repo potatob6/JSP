@@ -1,8 +1,10 @@
 package io.github.potatob6.Models;
 
+import io.github.potatob6.Annos.AutoIncrement;
 import io.github.potatob6.Annos.SQLSeq;
 
 public class BookClassBean {
+    @AutoIncrement
     @SQLSeq(order = 1)
     public int classID;
 

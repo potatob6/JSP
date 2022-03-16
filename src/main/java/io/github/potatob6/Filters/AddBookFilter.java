@@ -28,17 +28,17 @@ public class AddBookFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
-        String bookID = httpServletRequest.getParameter("bookID");
+//        String bookID = httpServletRequest.getParameter("bookID");
         String classID = httpServletRequest.getParameter("classID");
         String bookName = httpServletRequest.getParameter("bookName");
         String publisher = httpServletRequest.getParameter("publisher");
         String originPrice = httpServletRequest.getParameter("originPrice");
         String storageCount = httpServletRequest.getParameter("storageCount");
 
-        if(bookID == null || classID == null || bookName == null || publisher == null || originPrice == null || storageCount == null) {
+        if(classID == null || bookName == null || publisher == null || originPrice == null || storageCount == null) {
             //条件不充分
             System.out.println("条件不充分");
-            System.out.println("bookID:"+bookID);
+//            System.out.println("bookID:"+bookID);
             System.out.println("classID:"+classID);
             System.out.println("bookName:"+bookName);
             System.out.println("publisher:"+publisher);
