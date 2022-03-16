@@ -36,7 +36,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>QueryUser</servlet-name>
-    <url-pattern>/queryUser</url-pattern>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
 
   <filter>
@@ -78,7 +78,7 @@
   </filter-mapping>
   <filter-mapping>
     <filter-name>QueryUser</filter-name>
-    <url-pattern>/queryUser</url-pattern>
+    <url-pattern>/login</url-pattern>
   </filter-mapping>
 
 </web-app>
