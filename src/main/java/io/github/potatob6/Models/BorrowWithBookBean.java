@@ -6,7 +6,7 @@ import io.github.potatob6.Annos.SQLSeq;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-public class BorrowBean {
+public class BorrowWithBookBean {
     @PrimaryKey
     @SQLSeq(order = 1)
     public int borrowID;
@@ -32,6 +32,9 @@ public class BorrowBean {
 
     @SQLSeq(order = 7)
     public BigDecimal overtimeCharge;
+
+    @SQLSeq(order = 8)
+    public String bookName;
 
     public int getBorrowID() {
         return borrowID;
@@ -89,7 +92,15 @@ public class BorrowBean {
         this.overtimeCharge = overtimeCharge;
     }
 
-    public BorrowBean() {
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public BorrowWithBookBean() {
         this.bookID = 0;
         this.borrowID = 0;
         this.borrowDate = null;
@@ -97,5 +108,6 @@ public class BorrowBean {
         this.timeLimit = 0;
         this.returnedDate = null;
         this.overtimeCharge = null;
+        this.bookName = null;
     }
 }
