@@ -7,9 +7,9 @@
 
 <html>
     <head>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <link href="Javascript/bootstrap-3.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="Javascript/bootstrap-3.4.1-dist/js/bootstrap.min.js" ></script>
+        <script src="/JSP/Javascript/jquery-3.6.0.min.js"></script>
+        <link href="/JSP/Javascript/bootstrap-3.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="/JSP/Javascript/bootstrap-3.4.1-dist/js/bootstrap.min.js" ></script>
         <title>图书页面</title>
         <style type="text/css">
             body {
