@@ -207,7 +207,7 @@
     <div id="navigator">
         <!--navigation section-->
         <div style="margin-left: 2rem;" class="nagivator_item" onclick="window.location.href='index.html'">首页</div>
-        <div class="nagivator_item">登录</div>
+        <div class="nagivator_item" ><a href="./login.jsp">登录</a></div>
         <div class="nagivator_item">论坛</div>
         <div class="nagivator_item" onclick="aboutDis()">关于</div>
 
