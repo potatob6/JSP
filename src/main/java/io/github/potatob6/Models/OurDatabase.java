@@ -4,6 +4,7 @@ import io.github.potatob6.Annos.AutoIncrement;
 import io.github.potatob6.Annos.PrimaryKey;
 import io.github.potatob6.Annos.SQLSeq;
 import io.github.potatob6.Annos.TableName;
+//import sun.tools.jconsole.Tab;
 
 import java.awt.print.Book;
 import java.lang.annotation.Annotation;
@@ -11,8 +12,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Formatter;
+import java.sql.Date;
+import java.util.*;
 
 public class OurDatabase {
     private static OurDatabase db = null;
@@ -490,6 +491,90 @@ public class OurDatabase {
      * @return            返回借书是否成功
      */
     public boolean borrowABook(UserBean userBean, BookBean bookBean){
+        synchronized (OurDatabase.class){
+            BookBean queryBook = (BookBean) this.queryBean(bookBean, BookBean.class);
+            if(queryBook.getStorageCount()==0){
+                //没书了
+                return false;
+            }
+            //TODO
+        }
+        return false;
+    }
+
+    /**
+     * 更新Bean，bean中的主键要有，可以通过CopyBean拷贝一份，更新会更新所有属性
+     * @param bean            更新的Bean
+     * @param cl              Bean的Class
+     * @param withPrimaryKey  是否连同主键一起更新
+     * @return                返回更新是否成功
+     * 用法：
+     *         OurDatabase our = OurDatabase.getDataBase();
+     *         BookClassBean bcb = new BookClassBean();
+     *         bcb.setClassID(11);
+     *         bcb.setClassName("图书类别名");
+     *
+     *         our.updateBean(bcb, BookClassBean.class, false);
+     */
+    public boolean updateBean(Object bean, Class cl, boolean withPrimaryKey){
+        Annotation tableAnnotation = cl.getAnnotation(TableName.class);
+        if(tableAnnotation==null){
+            return false;
+        }
+        String tableName = ((TableName)tableAnnotation).name();
+        try {
+
+            Connection connection = this.getConnection();
+            Field[] fields = cl.getDeclaredFields();
+            Map<Field, Object> primaryFields = new HashMap<Field, Object>();
+            Map<Field, Object> changeFields = new HashMap<Field, Object>();
+            //获取全部主键
+            for(int i = 0;i<fields.length;i++){
+                Annotation isSQLProperty = fields[i].getAnnotation(SQLSeq.class);
+                if(isSQLProperty==null){
+                    continue;
+                }
+                Annotation isPrimaryAnnotation = fields[i].getAnnotation(PrimaryKey.class);
+
+                if(isPrimaryAnnotation!=null) {
+                    primaryFields.put(fields[i], fields[i].get(bean));
+                    if(withPrimaryKey){
+                        changeFields.put(fields[i], fields[i].get(bean));
+                    }
+                }else{
+                    changeFields.put(fields[i], fields[i].get(bean));
+                }
+            }
+            StringBuilder stringBuilder = new StringBuilder("update "+tableName+" set ");
+            Set<Field> changeFieldSet = changeFields.keySet();
+            int counter = 0;
+            //设置set后面的内容
+            for(Field f: changeFieldSet){
+                stringBuilder.append(f.getName()+"='"+changeFields.get(f).toString()+"'");
+                if(counter!=changeFieldSet.size()-1){
+                    stringBuilder.append(",");
+                }
+                counter++;
+            }
+            stringBuilder.append(" where ");
+            counter = 0;
+            for(Field f: primaryFields.keySet()){
+                stringBuilder.append(f.getName()+"='"+primaryFields.get(f).toString()+"'");
+                if(counter!= primaryFields.size()-1){
+                    stringBuilder.append(" and ");
+                }
+                counter++;
+            }
+            stringBuilder.append(";");
+            System.out.println(stringBuilder.toString());
+            Statement statement = connection.createStatement();;
+            statement.executeUpdate(stringBuilder.toString());
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
         return false;
     }
     /*
@@ -497,7 +582,7 @@ public class OurDatabase {
      * @param borrowWithBookBean
      * @return
      */
-    public int borrowBook(BorrowWithBookBean borrowWithBookBean){
+    public int borrowBook(BorrowWithBookBean borrowWithBookBean) {
         Connection connection = null;
         try {
             connection = this.getConnection();
@@ -509,5 +594,31 @@ public class OurDatabase {
             throwables.printStackTrace();
             return 0;
         }
+    }
+    /**
+     * 拷贝Bean
+     * @param bean         源bean
+     * @param beanClass    bean的Class类型
+     * @return             新的Bean
+     */
+    private Object copyBean(Object bean, Class beanClass){
+        try {
+            Object newObject = beanClass.getDeclaredConstructor().newInstance();
+            Field[] field = beanClass.getFields();
+            for(int i = 0;i<field.length;i++){
+                Object value = field[i].get(bean);
+                field[i].set(newObject, value);
+            }
+            return newObject;
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
