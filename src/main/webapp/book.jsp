@@ -42,7 +42,7 @@
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="#" >
+                                    <a href="borrow.jsp" >
                                         我的借还
                                     </a>
                                 </li>
@@ -53,65 +53,71 @@
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=session.getAttribute("user")%>，已登录</a></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=session.getAttribute("login")%>，已登录</a></li>
+                                <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
             </div>
+                <h2>图书列表</h2>
             <%-- 图书列表 --%>
             <div>
-                <table class="table table-hover">
-                    <tr>
-                        <th>图书ID</th>
-                        <th>图书类别</th>
-                        <th>图书名称</th>
-                        <th>出版社</th>
-                        <th>原始价格</th>
-                        <th>入库时间</th>
-                        <th>在库数量</th>
-                        <th>操作</th>
-                    </tr>
-                    <%
-                        OurDatabase ourDatabase = OurDatabase.getDataBase();
-                        ResultSet rs = ourDatabase.queryAllBook();
-                        try{
-                            while(rs.next()){
-                                String bookID = rs.getString(1);
-                                String classID = rs.getString(2);
-                                String bookName = rs.getString(3);
-                                String publisher = rs.getString(4);
-                                BigDecimal originPrice = rs.getBigDecimal(5);
-                                Date storageDate = rs.getDate(6);
-                                int storageCount = rs.getInt(7);
-                                out.println("<tr><td>" + bookID + "</td><td>"  + classID + "</td><td>" + bookName + "</td><td>"
-                                        + publisher + "</td><td>" + originPrice + "</td><td>" + storageDate + "</td><td>"
-                                        + storageCount + "</td><td><a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">借阅</a></td><tr>");
+<%--                <form action="/JSP/borrowBook" method="post">--%>
+                    <table class="table table-hover">
+                        <tr>
+                            <th>图书ID</th>
+                            <th>图书类别</th>
+                            <th>图书名称</th>
+                            <th>出版社</th>
+                            <th>原始价格</th>
+                            <th>入库时间</th>
+                            <th>在库数量</th>
+                            <th>操作</th>
+                        </tr>
+                        <%
+                            OurDatabase ourDatabase = OurDatabase.getDataBase();
+                            ResultSet rs = ourDatabase.queryAllBook();
+                            try{
+                                while(rs.next()){
+                                    int bookID = rs.getInt(1);
+                                    String classID = rs.getString(2);
+                                    String bookName = rs.getString(3);
+                                    String publisher = rs.getString(4);
+                                    BigDecimal originPrice = rs.getBigDecimal(5);
+                                    Date storageDate = rs.getDate(6);
+                                    int storageCount = rs.getInt(7);
+                                    out.println("<tr><td>" + bookID + "</td><td>"  + classID + "</td><td>" + bookName + "</td><td>"
+                                            + publisher + "</td><td>" + originPrice + "</td><td>" + storageDate + "</td><td>"
+                                            + storageCount + "</td><td><a class=\"btn btn-primary\" href=\"/JSP/borrowBook?action=post\">借阅</a></td><tr>");
+                                    session.setAttribute("bookID",bookID);
+                                }
+                            }catch(SQLException e){
+                                out.println("查询所有图书信息失败");
                             }
-                        }catch(SQLException e){
-                            out.println("查询所有图书信息失败");
-                        }
-                    %>
-                </table>
+                        %>
+                    </table>
+<%--    <input type="submit" class="btn btn-primary" value="借阅">--%>
+<%--                </form>--%>
+
             </div>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">借阅数量</h4>
-                        </div>
-                        <div class="modal-body">
-                            <input type="text" name="count" value="">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <a type="button" class="btn btn-primary" href="/borrowBook">确认借阅</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<%--            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
+<%--                <div class="modal-dialog" role="document">--%>
+<%--                    <div class="modal-content">--%>
+<%--                        <div class="modal-header">--%>
+<%--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
+<%--                            <h4 class="modal-title" id="myModalLabel">借阅数量</h4>--%>
+<%--                        </div>--%>
+<%--                        <div class="modal-body">--%>
+<%--                            <input type="text" name="count" value="">--%>
+<%--                        </div>--%>
+<%--                        <div class="modal-footer">--%>
+<%--                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>--%>
+<%--                            <a type="button" class="btn btn-primary" href="/borrowBook">确认借阅</a>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
     </body>
 </html>
