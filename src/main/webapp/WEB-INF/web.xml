@@ -21,7 +21,14 @@
     <servlet-name>QueryUser</servlet-name>
     <servlet-class>io.github.potatob6.Servlets.Login</servlet-class>
   </servlet>
-
+    <servlet-name>SecretChangeServlet</servlet-name>
+    <servlet-class>io.github.yywl5.Servlets.SecretChangeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>SecretChangeServlet</servlet-name>
+    <url-pattern>/SecretChangeServlet</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>RegistUser</servlet-name>
     <url-pattern>/regist</url-pattern>
