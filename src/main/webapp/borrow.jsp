@@ -7,6 +7,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%
+    Object login = request.getSession().getAttribute("login");
+    if(login==null) {
+%>
+    <html>
+        <body>
+            未登录
+        </body>
+    </html>
+<%
+    } else {
+%>
 <html>
   <head>
     <script src="/JSP/Javascript/jquery-3.6.0.min.js"></script>
@@ -55,7 +67,8 @@
                 </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=session.getAttribute("login")%>，已登录</a></li>
+                <% UserBean userBean1 = (UserBean)session.getAttribute("login"); %>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=userBean1.getNickname() %>，已登录</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
               </ul>
             </div>
@@ -80,7 +93,7 @@
             <tr>
               <%
                 UserBean userBean = new UserBean();
-                userBean.userID =  session.getAttribute("login").toString();
+                userBean = (UserBean)session.getAttribute("login");
                 OurDatabase ourDatabase = OurDatabase.getDataBase();
                 ArrayList<BorrowWithBookBean> ls = ourDatabase.queryUserAllBorrowed(userBean);
                 for(int i = 0; i < ls.size(); i++) {
@@ -91,18 +104,9 @@
                   int timeLimit = ls.get(i).timeLimit ;
                   Date returnedDate = ls.get(i).returnedDate ;
                   BigDecimal overtimeCharge = ls.get(i).overtimeCharge;
-
-                  //while(rs.next()){
-                  //  int bookID = rs.getInt(1);
-                  //  String classID = rs.getString(2);
-                  //  String bookName = rs.getString(3);
-                  //  String publisher = rs.getString(4);
-                  //  BigDecimal originPrice = rs.getBigDecimal(5);
-                  //  Date storageDate = rs.getDate(6);
-                  //  int storageCount = rs.getInt(7);
                   out.println("<tr><td>" + borrowID + "</td><td>"  + bookID + "</td><td>" + userID + "</td><td>"
-                          + borrowDate + "</td><td>" + timeLimit + "</td><td>" + returnedDate + "</td><td>"
-                          + overtimeCharge + "</td><td><a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">归还</a></td><tr>");
+                          + borrowDate + "</td><td>" + timeLimit + "天</td><td>" + ((returnedDate==null)?"未归还":returnedDate) + "</td><td>"
+                          + overtimeCharge + "</td><td>"+((returnedDate==null)?"<a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">归还</a>":"已归还")+"</td><tr>");
                 }
               %>
             </tr>
@@ -129,3 +133,4 @@
     </div>
   </body>
 </html>
+<% } %>

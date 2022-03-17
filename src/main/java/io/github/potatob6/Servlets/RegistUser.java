@@ -33,9 +33,14 @@ public class RegistUser extends HttpServlet {
 
         OurDatabase ourDatabase = OurDatabase.getDataBase();
         boolean result = ourDatabase.addUser(userBean);
-        EncodingResponse encodingResponse = new EncodingResponse(resp);
-        resp.setContentType("text/html; charset=UTF-8");
-        encodingResponse.println("添加用户"+result);
-        resp.getOutputStream().close();
+        if(result){
+            req.getSession().setAttribute("login", userBean);
+            resp.sendRedirect("/JSP/book.jsp");
+        }else {
+            EncodingResponse encodingResponse = new EncodingResponse(resp);
+            resp.setContentType("text/html; charset=UTF-8");
+            encodingResponse.println("注册失败" + result);
+            resp.getOutputStream().close();
+        }
     }
 }
