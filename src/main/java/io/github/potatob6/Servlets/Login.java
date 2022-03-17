@@ -2,6 +2,7 @@ package io.github.potatob6.Servlets;
 
 import io.github.potatob6.Models.OurDatabase;
 import io.github.potatob6.Models.UserBean;
+import io.github.potatob6.Wrapper.EncodingResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,11 +36,15 @@ public class Login extends HttpServlet {
                 return;
             }else{
                 System.out.println("密码错误");
-                resp.getWriter().println("密码错误");
+                resp.setContentType("text/html; charset=utf-8");
+                EncodingResponse encodingResponse = new EncodingResponse(resp);
+                encodingResponse.println("密码错误");
                 return;
             }
         }else{
-            resp.getWriter().println("无此用户");
+            resp.setContentType("text/html; charset=utf-8");
+            EncodingResponse encodingResponse = new EncodingResponse(resp);
+            encodingResponse.println("无此用户");
         }
     }
 }

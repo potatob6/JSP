@@ -5,6 +5,8 @@
   Time: 15:11
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="io.github.potatob6.Models.*" %>
+<%@ page import="java.util.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
 <!DOCTYPE html>
@@ -33,6 +35,7 @@
 </head>
 <body>
 <div id="content">
+    <% UserBean userBean = (UserBean)session.getAttribute("login"); %>
     <div id="content-header">
         <h1>密码修改</h1>
     </div>
@@ -44,22 +47,22 @@
                         <h5>密码修改</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form id="form-wizard" class="form-horizontal" method="post" action="SecretChangeServlet">
+                        <form id="form-wizard" class="form-horizontal" method="post" action="/JSP/SecretChangeServlet">
                             <div id="form-wizard-1" class="step">
                                 <div class="control-group">
-                                    <label class="control-label">用户名</label>
+                                    <label class="control-label">原密码</label>
                                     <div class="controls">
-                                        <input id="username" type="text" name="username" placeholder="请输入用户名"/>
+                                        <input id="username" type="password" name="originPassword" placeholder="请输入用户名"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">密码</label>
+                                    <label class="control-label">新密码</label>
                                     <div class="controls">
                                         <input id="password" type="password" name="password" placeholder="请输入密码"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">密码验证</label>
+                                    <label class="control-label">再次输入密码</label>
                                     <div class="controls">
                                         <input id="password2" type="password" name="password2" placeholder="请再次输入密码"/>
                                     </div>

@@ -550,7 +550,12 @@ public class OurDatabase {
             int counter = 0;
             //设置set后面的内容
             for(Field f: changeFieldSet){
-                stringBuilder.append(f.getName()+"='"+changeFields.get(f).toString()+"'");
+                Object value = changeFields.get(f);
+                if(value==null){
+                    stringBuilder.append(f.getName()+"=null");
+                } else {
+                    stringBuilder.append(f.getName() + "='" + value.toString() + "'");
+                }
                 if(counter!=changeFieldSet.size()-1){
                     stringBuilder.append(",");
                 }
@@ -601,7 +606,7 @@ public class OurDatabase {
      * @param beanClass    bean的Class类型
      * @return             新的Bean
      */
-    private Object copyBean(Object bean, Class beanClass){
+    public Object copyBean(Object bean, Class beanClass){
         try {
             Object newObject = beanClass.getDeclaredConstructor().newInstance();
             Field[] field = beanClass.getFields();

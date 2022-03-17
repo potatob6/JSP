@@ -35,11 +35,11 @@ public class UserBean {
         this.nickname = nickname;
     }
 
-    public boolean isVIP() {
+    public int isVIP() {
         return isVIP;
     }
 
-    public void setVIP(boolean VIP) {
+    public void setVIP(int VIP) {
         isVIP = VIP;
     }
 
@@ -55,7 +55,7 @@ public class UserBean {
         this.userID = null;
         this.pwd = null;
         this.nickname = null;
-        this.isVIP = false;
+        this.isVIP = 0;
         this.cardID = null;
         this.balance = new BigDecimal("0.0");
     }
@@ -76,7 +76,7 @@ public class UserBean {
     @SQLSeq(order = 3)
     public String nickname;
     @SQLSeq(order = 4)
-    public boolean isVIP;
+    public int isVIP;
     @SQLSeq(order = 5)
     public String cardID;
     @SQLSeq(order = 6)
