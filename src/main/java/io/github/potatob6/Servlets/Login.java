@@ -23,15 +23,14 @@ public class Login extends HttpServlet {
         OurDatabase ourDatabase = OurDatabase.getDataBase();
         UserBean userBean1 = ourDatabase.querySpecificUserByUserID(userBean);
 
-        req.getSession().setMaxInactiveInterval(30*60);
-        req.getSession().setAttribute("login", userBean1.userID);
-
         //这里是调试输出，到时候删掉
         if(userBean1 != null){
             if(userBean1.getPwd().equals(pwd)) {
                 System.out.println("登录成功：用户名：" + userBean1.getUserID());
                 System.out.println("        密码：" + userBean1.getPwd());
                 System.out.println("        昵称:" + userBean1.getNickname());
+                req.getSession().setMaxInactiveInterval(30*60);
+                req.getSession().setAttribute("login", userBean1);
                 resp.sendRedirect("/JSP/book.jsp");
                 return;
             }else{

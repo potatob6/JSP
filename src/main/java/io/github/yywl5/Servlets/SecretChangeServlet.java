@@ -35,7 +35,7 @@ public class SecretChangeServlet extends HttpServlet {
         response.setContentType("text ml;charset=gb2312");
         try{
             OurDatabase editpasswordseek = OurDatabase.getDataBase();
-            editpasswordseek
+//            editpasswordseek
             if (username==null || password ==null || password2 == null){
                 response.sendRedirect("reSecretChange.jsp?errmsg=inforamtion error");
             }

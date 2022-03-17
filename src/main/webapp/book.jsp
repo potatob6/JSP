@@ -1,7 +1,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.math.BigDecimal" %>
 <%@ page import="java.sql.Date" %>
-<%@ page import="io.github.potatob6.Models.OurDatabase" %>
+<%@ page import="io.github.potatob6.Models.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -37,24 +37,29 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" >
+                                    <a href="/JSP/UserMainPage.jsp" >
                                         个人信息
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="borrow.jsp" >
+                                    <a href="/JSP/borrow.jsp" >
                                         我的借还
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="#" >
+                                    <a href="/JSP/SecretChange.jsp" >
                                         密码修改
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=session.getAttribute("login")%>，已登录</a></li>
-                                <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
+                                <% if(session.getAttribute("login")!=null) { %>
+                                    <% UserBean userBean = (UserBean)session.getAttribute("login"); %>
+                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=userBean.getNickname() %>，已登录</a></li>
+                                    <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
+                                <% } else {%>
+                                    <li><a href="/JSP/login.jsp"><span class="glyphicon glyphicon-user">未登录</a></li>
+                                <% } %>
                             </ul>
                         </div>
                     </div>

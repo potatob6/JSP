@@ -66,6 +66,11 @@
     <filter-name>QueryUser</filter-name>
     <filter-class>io.github.potatob6.Filters.LoginFilter</filter-class>
   </filter>
+<!--  登录过滤器-->
+  <filter>
+    <filter-name>LoginedFilter</filter-name>
+    <filter-class>io.github.potatob6.Filters.LoginedFilter</filter-class>
+  </filter>
 
   <filter-mapping>
     <filter-name>AddBookFilter</filter-name>
@@ -86,6 +91,10 @@
   <filter-mapping>
     <filter-name>QueryUser</filter-name>
     <url-pattern>/login</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>LoginedFilter</filter-name>
+    <url-pattern>/borrow</url-pattern>
   </filter-mapping>
 
 </web-app>
