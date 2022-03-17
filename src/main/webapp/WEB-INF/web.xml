@@ -21,6 +21,7 @@
     <servlet-name>QueryUser</servlet-name>
     <servlet-class>io.github.potatob6.Servlets.Login</servlet-class>
   </servlet>
+  <servlet>
     <servlet-name>SecretChangeServlet</servlet-name>
     <servlet-class>io.github.yywl5.Servlets.SecretChangeServlet</servlet-class>
   </servlet>
