@@ -85,7 +85,7 @@ public class OurDatabase {
             String[] params = new String[12];
             Statement statement = connection.createStatement();
             Class cl = bookBean.getClass();
-            setupPreparedStatementWithoutAutoincrement(cl, params, bookBean);
+            setupStatement(cl, params, bookBean,true);
             Formatter formatter = new Formatter();
             formatter.format(sql, params);
             int result = statement.executeUpdate(formatter.out().toString());
@@ -114,7 +114,7 @@ public class OurDatabase {
 //            PreparedStatement preparedStatement = connection.prepareStatement("insert into BookClass(?) values(?);");
             Statement statement = connection.createStatement();
             Class cl = bookClassBean.getClass();
-            setupPreparedStatementWithoutAutoincrement(cl, params, bookClassBean);
+            setupStatement(cl, params, bookClassBean,true);
             Formatter formatter = new Formatter();
             formatter.format(sql, params);
             System.out.println(formatter.out().toString());
@@ -138,13 +138,15 @@ public class OurDatabase {
      * @throws SQLException
      * @throws IllegalAccessException
      */
-    private void setupPreparedStatementWithoutAutoincrement(Class cl, String[] params, Object bean) throws SQLException, IllegalAccessException {
+    private void setupStatement(Class cl, String[] params, Object bean, boolean withoutAutoincrement) throws SQLException, IllegalAccessException {
         Field[] fields = cl.getDeclaredFields();
         int field_needs = fields.length;
-        for(int i = 0;i<fields.length;i++){
-            Annotation autoIncrementAnno = fields[i].getAnnotation(AutoIncrement.class);
-            if(autoIncrementAnno!=null){
-                field_needs--;
+        if(withoutAutoincrement){
+            for(int i = 0;i<fields.length;i++){
+                Annotation autoIncrementAnno = fields[i].getAnnotation(AutoIncrement.class);
+                if(autoIncrementAnno!=null){
+                    field_needs--;
+                }
             }
         }
         System.out.println("not incre:"+field_needs);
@@ -152,8 +154,10 @@ public class OurDatabase {
         for(int i = 0;i<fields.length;i++){
             Annotation annotation = fields[i].getAnnotation(SQLSeq.class);
             Annotation autoanno = fields[i].getAnnotation(AutoIncrement.class);
-            if(autoanno!=null){
-                continue;
+            if(withoutAutoincrement) {
+                if (autoanno != null) {
+                    continue;
+                }
             }
             Class fieldType = fields[i].getType();
             int order = ((SQLSeq) annotation).order();
@@ -315,11 +319,21 @@ public class OurDatabase {
     }
 
     /**
-     *
-     * @return  返回一个列表，里面全是用户的借阅记录，包含书名信息
+     * 查询一个用户的借阅情况，
+     * @param userBean  需要提供对应用户的userBean，其中userID必须要填，
+     * @return          返回一个{@link BorrowWithBookBean}的集合，具体属性可以看BorrowWithBookBean的属性
      */
-    public ArrayList<BorrowBean> queryUserAllBorrowed(UserBean userBean) {
-        //TODO 完成查询用户借阅情况
+    public ArrayList<BorrowWithBookBean> queryUserAllBorrowed(UserBean userBean) {
+        try {
+            Connection connection = this.getConnection();
+            Statement statement = conn.createStatement();
+            String sql = "select borrowID, Book.bookID, userID, borrowDate, timeLimit, returnedDate, overtimeCharge, bookName from Borrow, Book where Borrow.bookID=Book.bookID and userID='"+userBean.userID+"';";
+            ArrayList<BorrowWithBookBean> borrowWithBookBeans = (ArrayList<BorrowWithBookBean>) statement.executeQuery(sql);
+            return borrowWithBookBeans;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         return null;
     }
 }

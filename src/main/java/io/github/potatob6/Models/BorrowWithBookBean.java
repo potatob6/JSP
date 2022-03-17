@@ -31,10 +31,10 @@ public class BorrowWithBookBean {
     public Date returnedDate;
 
     @SQLSeq(order = 7)
-    public BigDecimal overtimeCharge;
+    public BigDecimal overtimeCharge;    //从这往上的属性都是与Borrow表对应的
 
     @SQLSeq(order = 8)
-    public String bookName;
+    public String bookName;              //这里额外增加了对应的书名
 
     public int getBorrowID() {
         return borrowID;
