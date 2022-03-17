@@ -28,31 +28,31 @@ public class BorrowBook extends HttpServlet {
     @Override
     protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String userID = req.getParameter("login");
-        int bookID = Integer.parseInt(req.getParameter("bookID"));
-        System.out.println(bookID);
-        BorrowWithBookBean borrowWithBookBean = new BorrowWithBookBean();
-        borrowWithBookBean.setUserID(userID);
-        borrowWithBookBean.setBookID(bookID);
-        Calendar nowDay = Calendar.getInstance();
-        Formatter formatter = new Formatter();
-        formatter.format("%04d-%02d-%02d",
-                nowDay.get(Calendar.YEAR),
-                nowDay.get(Calendar.MONTH)+1,
-                nowDay.get(Calendar.DAY_OF_MONTH));
-        borrowWithBookBean.setBorrowDate(Date.valueOf(formatter.out().toString()));
-        borrowWithBookBean.setTimeLimit(30) ;
-        borrowWithBookBean.setReturnedDate(null);
-        borrowWithBookBean.setOvertimeCharge(null);
-        int count = 1; //留着更新Book库存用,数据库方法暂未写更新Book表
-
-        OurDatabase ourDatabase = OurDatabase.getDataBase();
-        int result = ourDatabase.borrowBook(borrowWithBookBean);
-        if(result != 0){
-            System.out.println("借阅成功");
-        }
-        req.getRequestDispatcher("/JSP/borrow.jsp").forward(req, resp);
-        resp.getOutputStream().close();
+//        String userID = req.getParameter("login");
+//        int bookID = Integer.parseInt(req.getParameter("bookID"));
+//        System.out.println(bookID);
+//        BorrowWithBookBean borrowWithBookBean = new BorrowWithBookBean();
+//        borrowWithBookBean.setUserID(userID);
+//        borrowWithBookBean.setBookID(bookID);
+//        Calendar nowDay = Calendar.getInstance();
+//        Formatter formatter = new Formatter();
+//        formatter.format("%04d-%02d-%02d",
+//                nowDay.get(Calendar.YEAR),
+//                nowDay.get(Calendar.MONTH)+1,
+//                nowDay.get(Calendar.DAY_OF_MONTH));
+//        borrowWithBookBean.setBorrowDate(Date.valueOf(formatter.out().toString()));
+//        borrowWithBookBean.setTimeLimit(30) ;
+//        borrowWithBookBean.setReturnedDate(null);
+//        borrowWithBookBean.setOvertimeCharge(null);
+//        int count = 1; //留着更新Book库存用,数据库方法暂未写更新Book表
+//
+//        OurDatabase ourDatabase = OurDatabase.getDataBase();
+//        int result = ourDatabase.borrowBook(borrowWithBookBean);
+//        if(result != 0){
+//            System.out.println("借阅成功");
+//        }
+//        req.getRequestDispatcher("/JSP/borrow.jsp").forward(req, resp);
+//        resp.getOutputStream().close();
 
     }
 }
