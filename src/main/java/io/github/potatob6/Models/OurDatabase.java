@@ -492,4 +492,22 @@ public class OurDatabase {
     public boolean borrowABook(UserBean userBean, BookBean bookBean){
         return false;
     }
+    /*
+     *  借阅图书
+     * @param borrowWithBookBean
+     * @return
+     */
+    public int borrowBook(BorrowWithBookBean borrowWithBookBean){
+        Connection connection = null;
+        try {
+            connection = this.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into Borrow values(?,?,?,?,?,?,?);");
+            int count = preparedStatement.executeUpdate();
+            System.out.println("影响行数");
+            return count;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return 0;
+        }
+    }
 }
