@@ -279,7 +279,7 @@
         function bigWhiteFinal() {
             $("whiteBoard").style.transform = "scale(1)"
             setTimeout(() => {
-                window.location.href = "purchase.html"
+                window.location.href = "/JSP/login.jsp"
             }, 1000);
         }
         onLoadCallBack = (e) => {

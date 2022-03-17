@@ -93,9 +93,4 @@
     <filter-name>QueryUser</filter-name>
     <url-pattern>/login</url-pattern>
   </filter-mapping>
-  <filter-mapping>
-    <filter-name>LoginedFilter</filter-name>
-    <url-pattern>/borrow</url-pattern>
-  </filter-mapping>
-
 </web-app>
