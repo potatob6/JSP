@@ -19,8 +19,14 @@
     <link href="css/font-awesome.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
     <style>
-        body{
-            background: url("images/background3.png") center center no-repeat;
+        #content{
+            background: url("images/background5.jpg") center center no-repeat;
+        }
+        #form-wizard-1 {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            flex-direction: column;
         }
     </style>
 </head>
@@ -37,27 +43,29 @@
                         <h5>密码修改</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form id="form-wizard" class="form-horizontal" method="post">
+                        <form id="form-wizard" class="form-horizontal" method="post" action="SecretChangeServlet">
                             <div id="form-wizard-1" class="step">
                                 <div class="control-group">
                                     <label class="control-label">用户名</label>
                                     <div class="controls">
-                                        <input id="username" type="text" name="username" />
+                                        <input id="username" type="text" name="username" placeholder="请输入用户名"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">密码</label>
                                     <div class="controls">
-                                        <input id="password" type="password" name="password" />
+                                        <input id="password" type="password" name="password" placeholder="请输入密码"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">密码验证</label>
                                     <div class="controls">
-                                        <input id="password2" type="password" name="password2" />
+                                        <input id="password2" type="password" name="password2" placeholder="请再次输入密码"/>
                                     </div>
                                 </div>
                             </div>
+                            <br>
+                            </br>
                             <div class="form-actions">
                                 &nbsp;
                                 <input id="back" class="btn btn-primary" type="submit" value="提交" />
