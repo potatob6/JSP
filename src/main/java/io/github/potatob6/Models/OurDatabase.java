@@ -2,6 +2,7 @@ package io.github.potatob6.Models;
 
 import io.github.potatob6.Annos.AutoIncrement;
 import io.github.potatob6.Annos.SQLSeq;
+import io.github.potatob6.Annos.TableName;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -81,7 +82,7 @@ public class OurDatabase {
         Connection connection = null;
         try {
             connection = this.getConnection();
-            String sql = "insert into Book(%s,%s,%s,%s,%s,%s) values('%s','%s','%s','%s','%s','%s');";
+            String sql = "insert into Book(%s,%s,%s,%s,%s,%s) values(%s,%s,%s,%s,%s,%s);";
             String[] params = new String[12];
             Statement statement = connection.createStatement();
             Class cl = bookBean.getClass();
@@ -152,6 +153,7 @@ public class OurDatabase {
         System.out.println("not incre:"+field_needs);
         int j = 0;
         for(int i = 0;i<fields.length;i++){
+            System.out.println("field_needs:"+field_needs+", j:"+j);
             Annotation annotation = fields[i].getAnnotation(SQLSeq.class);
             Annotation autoanno = fields[i].getAnnotation(AutoIncrement.class);
             if(withoutAutoincrement) {
@@ -166,24 +168,28 @@ public class OurDatabase {
             System.out.println("propertyName:"+propertyName+", value:"+value);
             if(annotation!=null){
                 params[j] = propertyName;
+                if(value==null){
+                    params[field_needs+j] = "NULL";
+                    continue;
+                }
 //                preparedStatement.setString(j+1, propertyName);
                 if(fieldType==String.class) {
-                    params[field_needs+j] = (String)value;
+                    params[field_needs+j] = "'"+(String)value+"'";
 //                    preparedStatement.setString(field_needs+j+1, (String)(value));
                 }else if(fieldType==double.class){
-                    params[field_needs+j] = String.valueOf((double)value);
+                    params[field_needs+j] = "'"+String.valueOf((double)value)+"'";
 //                    preparedStatement.setDouble(field_needs+j+1, (double)(value));
                 }else if(fieldType==int.class){
-                    params[field_needs+j] = String.valueOf((int)value);
+                    params[field_needs+j] = "'"+String.valueOf((int)value)+"'";
 //                    preparedStatement.setInt(field_needs+j+1, (int)(value));
                 }else if(fieldType==java.sql.Date.class){
-                    params[field_needs+j] = ((java.sql.Date)value).toString();
+                    params[field_needs+j] = "'"+((java.sql.Date)value).toString()+"'";
 //                    preparedStatement.setDate(field_needs+j+1, (java.sql.Date)(value));
                 }else if(fieldType==BigDecimal.class){
-                    params[field_needs+j] = ((BigDecimal)value).toString();
+                    params[field_needs+j] = "'"+((BigDecimal)value).toString()+"'";
 //                    preparedStatement.setBigDecimal(field_needs+j+1, (BigDecimal) (value));
                 }else if(fieldType==boolean.class){
-                    params[field_needs+j] = String.valueOf((boolean) value);
+                    params[field_needs+j] = "'"+String.valueOf((boolean) value)+"'";
 //                    preparedStatement.setBoolean(field_needs+j+1, (boolean) (value));
                 }
             }
@@ -341,5 +347,70 @@ public class OurDatabase {
         }
 
         return null;
+    }
+
+    /**
+     * 向数据库插入一行，自动屏蔽auto_increment字段，插入的表和字段属性都是根据Bean自动生成
+     * @param object                    对象要为Bean类型，例如UserBean, BookBean，不然会错误
+     * @param beanClass                 Bean的Class类型
+     * @param withoutAutoIncrement      是否需要屏蔽自增属性
+     * @return                          返回执行状态
+     * 用法：
+     *      OurDatabase our = OurDatabase.getDataBase();
+     *      BookBean bookBean = new BookBean();
+     *      bookBean.setBookName("图书");
+     *      bookBean.setOriginPrice(new BigDecimal("70.40"));
+     *      boolean result = our.insert(bookBean, BookBean.class, true);
+     *      System.out.println("插入状态:"+result);
+     */
+    public boolean insert(Object object, Class beanClass, boolean withoutAutoIncrement){
+        Annotation tableNameAnno = beanClass.getAnnotation(TableName.class);
+        if(tableNameAnno==null){
+            System.err.println("错误：Bean类型非数据库中的表");
+            return false;
+        }
+        String tableName = ((TableName)tableNameAnno).name();
+        Field[] fields = beanClass.getDeclaredFields();
+        int field_needs = fields.length;
+        if(withoutAutoIncrement){
+            for(int i = 0;i<fields.length;i++){
+                if(fields[i].getAnnotation(AutoIncrement.class)!=null){
+                    field_needs--;
+                }
+            }
+        }
+        StringBuilder stringBuilder = new StringBuilder("insert into ");
+        stringBuilder.append(tableName);
+        stringBuilder.append("(");
+        for(int i = 0;i<field_needs;i++)
+        {
+            stringBuilder.append("%s");
+            if(i!=field_needs-1)
+                stringBuilder.append(",");
+        }
+        stringBuilder.append(") values(");
+        for(int i = 0;i<field_needs;i++)
+        {
+            stringBuilder.append("%s");
+            if(i!=field_needs-1)
+                stringBuilder.append(",");
+        }
+        stringBuilder.append(");");
+        String[] params = new String[field_needs*2];
+        try {
+            String sql = stringBuilder.toString();
+            Connection connection = this.getConnection();
+            Statement statement = connection.createStatement();
+            setupStatement(beanClass, params, object, withoutAutoIncrement);
+            Formatter formatter = new Formatter();
+            formatter.format(sql, params);
+            int result = statement.executeUpdate(formatter.out().toString());
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

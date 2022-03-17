@@ -24,7 +24,7 @@ public class AddBook extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EncodingWrapper encodingWrapper = new EncodingWrapper(req);
-//        String bookID = encodingWrapper.getParameter("bookID");    不需要提供bookID，自增
+        String bookID = encodingWrapper.getParameter("bookID");    //不需要提供bookID，自增
         String classID = encodingWrapper.getParameter("classID");
         String bookName = encodingWrapper.getParameter("bookName");
         String publisher = encodingWrapper.getParameter("publisher");
@@ -39,6 +39,7 @@ public class AddBook extends HttpServlet {
                 nowDay.get(Calendar.MONTH)+1,
                 nowDay.get(Calendar.DAY_OF_MONTH));
 
+        bookBean.setBookID(Integer.parseInt(bookID));
         bookBean.setStorageDate(Date.valueOf(formatter.out().toString()));
         bookBean.setBookName(bookName);
         bookBean.setClassID(classID);
@@ -47,7 +48,7 @@ public class AddBook extends HttpServlet {
         bookBean.setStorageCount(storageCount);
 
         OurDatabase ourDatabase = OurDatabase.getDataBase();
-        boolean result = ourDatabase.addBook(bookBean);
+        boolean result = ourDatabase.insert(bookBean, BookBean.class, false);
         EncodingResponse encodingResponse = new EncodingResponse(resp);
         resp.setContentType("text/html; charset=UTF-8");
         encodingResponse.println("影响行数:"+result);
