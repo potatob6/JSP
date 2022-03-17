@@ -1,9 +1,11 @@
 package io.github.potatob6.Models;
 
 import io.github.potatob6.Annos.AutoIncrement;
+import io.github.potatob6.Annos.PrimaryKey;
 import io.github.potatob6.Annos.SQLSeq;
 import io.github.potatob6.Annos.TableName;
 
+import java.awt.print.Book;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -411,6 +413,83 @@ public class OurDatabase {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        return false;
+    }
+
+    /**
+     * 查询数据库中的Bean,其中传入的Bean的所有主键必须要填
+     * @param object  Bean对象
+     * @param cl      Bean对象所属类
+     * @return        完整的Bean对象
+     * 用法：
+     *             OurDatabase our = OurDatabase.getDataBase();
+     *             BorrowBean borrowBean = new BorrowBean();
+     *             borrowBean.setBorrowID(1);
+     *             borrowBean.setBookID(2);
+     *             borrowBean.setUserID("1");
+     *             borrowBean.setBorrowDate(Date.valueOf("2022-03-16"));
+     *             borrowBean.setTimeLimit(60);
+     *             BorrowBean result = (BorrowBean)(our.queryBean(borrowBean, BookBean.class));
+     *             if(result==null)
+     *             {
+     *                 System.out.println("无还书日期");
+     *             }
+     *             System.out.println("查询到的还书日期为："+result.getReturnedDate());
+     */
+    public Object queryBean(Object object, Class cl){
+        Annotation classAnnotation = cl.getAnnotation(TableName.class);
+        if(classAnnotation==null){
+            return null;
+        }
+        ArrayList<Field> arrayList = new ArrayList<Field>();
+        Field[] fields = cl.getDeclaredFields();
+        for(int i = 0;i<fields.length;i++){
+            if(fields[i].getAnnotation(PrimaryKey.class)!=null){
+                arrayList.add(fields[i]);
+            }
+        }
+        try{
+            StringBuilder stringBuilder = new StringBuilder("select * from ");
+            stringBuilder.append(((TableName)classAnnotation).name());
+            stringBuilder.append(" where ");
+            for(int i = 0;i<arrayList.size();i++){
+                Field field = arrayList.get(i);
+                Object value = field.get(object);
+                stringBuilder.append(field.getName());
+                if(value==null){
+                    stringBuilder.append(" is null ");
+                }else{
+                    stringBuilder.append("=");
+                    stringBuilder.append("'"+value.toString()+"'");
+                }
+
+                if(i!=arrayList.size()-1){
+                    stringBuilder.append(" and ");
+                }
+            }
+            stringBuilder.append(";");
+            Object o = null;
+            Connection connection = this.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(stringBuilder.toString());
+            if(resultSet.next()) {
+                o = fullSetupSingleByQuery(resultSet, cl);
+            }
+            return o;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    /**
+     * 借书操作
+     * @param userBean    {@link UserBean} 用户Bean
+     * @param bookBean    {@link BookBean} 图书Bean
+     * @return            返回借书是否成功
+     */
+    public boolean borrowABook(UserBean userBean, BookBean bookBean){
         return false;
     }
 }
