@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.Writer;
 
 public class AddBookClass extends HttpServlet {
     @Override
@@ -21,7 +20,8 @@ public class AddBookClass extends HttpServlet {
 //        bookClassBean.classID = classID;
         bookClassBean.className = className;
         OurDatabase ourDatabase = OurDatabase.getDataBase();
-        boolean result = ourDatabase.addBookClass(bookClassBean);
+        boolean result = ourDatabase.insert(bookClassBean, BookClassBean.class, true);
+//        boolean result = ourDatabase.addBookClass(bookClassBean);
 
         EncodingResponse encodingResponse = new EncodingResponse(resp);
         resp.setContentType("text/html; charset=UTF-8");

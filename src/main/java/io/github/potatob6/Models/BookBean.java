@@ -3,10 +3,12 @@ package io.github.potatob6.Models;
 import io.github.potatob6.Annos.AutoIncrement;
 import io.github.potatob6.Annos.PrimaryKey;
 import io.github.potatob6.Annos.SQLSeq;
+import io.github.potatob6.Annos.TableName;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 
+@TableName(name = "Book")
 public class BookBean {
 
     @PrimaryKey
