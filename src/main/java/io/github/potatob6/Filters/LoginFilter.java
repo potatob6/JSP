@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * 图书类别添加过滤器，判断至少含有classID和className
+ * 查询特定用户过滤器，至少需要userID属性和密码
  */
-public class AddBookClassFilter implements Filter {
+public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -15,11 +15,11 @@ public class AddBookClassFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-//        String classID = httpServletRequest.getParameter("classID");
-        String className = httpServletRequest.getParameter("className");
-        if(className == null) {
-            //不满足条件
+
+        String userID = servletRequest.getParameter("userID");
+        String pwd = servletRequest.getParameter("pwd");
+        if(userID == null || pwd == null){
+
         }else{
             filterChain.doFilter(servletRequest, servletResponse);
         }

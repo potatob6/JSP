@@ -1,5 +1,6 @@
 package io.github.potatob6.Models;
 
+import io.github.potatob6.Annos.AutoIncrement;
 import io.github.potatob6.Annos.SQLSeq;
 
 import java.lang.annotation.Annotation;
@@ -8,6 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Formatter;
 
 public class OurDatabase {
     private static OurDatabase db = null;
@@ -79,10 +81,14 @@ public class OurDatabase {
         Connection connection = null;
         try {
             connection = this.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into Book values(?,?,?,?,?,?,?);");
+            String sql = "insert into Book(%s,%s,%s,%s,%s,%s) values('%s','%s','%s','%s','%s','%s');";
+            String[] params = new String[12];
+            Statement statement = connection.createStatement();
             Class cl = bookBean.getClass();
-            setupPreparedStatement(cl, preparedStatement, bookBean);
-            int result = preparedStatement.executeUpdate();
+            setupStatement(cl, params, bookBean,true);
+            Formatter formatter = new Formatter();
+            formatter.format(sql, params);
+            int result = statement.executeUpdate(formatter.out().toString());
             System.out.println("影响行数:"+result);
             return true;
         } catch (SQLException throwables) {
@@ -103,10 +109,16 @@ public class OurDatabase {
     public boolean addBookClass(BookClassBean bookClassBean) {
         try{
             Connection connection = this.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into BookClass values(?,?);");
+            String sql = "insert into BookClass(%s) values('%s');";
+            String[] params = new String[2];
+//            PreparedStatement preparedStatement = connection.prepareStatement("insert into BookClass(?) values(?);");
+            Statement statement = connection.createStatement();
             Class cl = bookClassBean.getClass();
-            setupPreparedStatement(cl, preparedStatement, bookClassBean);
-            int result = preparedStatement.executeUpdate();
+            setupStatement(cl, params, bookClassBean,true);
+            Formatter formatter = new Formatter();
+            formatter.format(sql, params);
+            System.out.println(formatter.out().toString());
+            int result = statement.executeUpdate(formatter.out().toString());
             System.out.println("影响行数:"+result);
             return true;
         } catch (SQLException throwables) {
@@ -115,6 +127,67 @@ public class OurDatabase {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     * 通过反射装配好除了auto_increment之外的数据
+     * @param cl
+     * @param params
+     * @param bean
+     * @throws SQLException
+     * @throws IllegalAccessException
+     */
+    private void setupStatement(Class cl, String[] params, Object bean, boolean withoutAutoincrement) throws SQLException, IllegalAccessException {
+        Field[] fields = cl.getDeclaredFields();
+        int field_needs = fields.length;
+        if(withoutAutoincrement){
+            for(int i = 0;i<fields.length;i++){
+                Annotation autoIncrementAnno = fields[i].getAnnotation(AutoIncrement.class);
+                if(autoIncrementAnno!=null){
+                    field_needs--;
+                }
+            }
+        }
+        System.out.println("not incre:"+field_needs);
+        int j = 0;
+        for(int i = 0;i<fields.length;i++){
+            Annotation annotation = fields[i].getAnnotation(SQLSeq.class);
+            Annotation autoanno = fields[i].getAnnotation(AutoIncrement.class);
+            if(withoutAutoincrement) {
+                if (autoanno != null) {
+                    continue;
+                }
+            }
+            Class fieldType = fields[i].getType();
+            int order = ((SQLSeq) annotation).order();
+            Object value = fields[i].get(bean);
+            String propertyName = fields[i].getName();
+            System.out.println("propertyName:"+propertyName+", value:"+value);
+            if(annotation!=null){
+                params[j] = propertyName;
+//                preparedStatement.setString(j+1, propertyName);
+                if(fieldType==String.class) {
+                    params[field_needs+j] = (String)value;
+//                    preparedStatement.setString(field_needs+j+1, (String)(value));
+                }else if(fieldType==double.class){
+                    params[field_needs+j] = String.valueOf((double)value);
+//                    preparedStatement.setDouble(field_needs+j+1, (double)(value));
+                }else if(fieldType==int.class){
+                    params[field_needs+j] = String.valueOf((int)value);
+//                    preparedStatement.setInt(field_needs+j+1, (int)(value));
+                }else if(fieldType==java.sql.Date.class){
+                    params[field_needs+j] = ((java.sql.Date)value).toString();
+//                    preparedStatement.setDate(field_needs+j+1, (java.sql.Date)(value));
+                }else if(fieldType==BigDecimal.class){
+                    params[field_needs+j] = ((BigDecimal)value).toString();
+//                    preparedStatement.setBigDecimal(field_needs+j+1, (BigDecimal) (value));
+                }else if(fieldType==boolean.class){
+                    params[field_needs+j] = String.valueOf((boolean) value);
+//                    preparedStatement.setBoolean(field_needs+j+1, (boolean) (value));
+                }
+            }
+            j++;
         }
     }
     /**
@@ -243,5 +316,30 @@ public class OurDatabase {
             throwables.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * 查询一个用户的借阅情况，
+     * @param userBean  需要提供对应用户的userBean，其中userID必须要填，
+     * @return          返回一个{@link BorrowWithBookBean}的集合，具体属性可以看BorrowWithBookBean的属性
+     */
+    public ArrayList<BorrowWithBookBean> queryUserAllBorrowed(UserBean userBean) {
+        try {
+            Connection connection = this.getConnection();
+            Statement statement = conn.createStatement();
+            String sql = "select borrowID, Book.bookID, userID, borrowDate, timeLimit, returnedDate, overtimeCharge, bookName from Borrow, Book where Borrow.bookID=Book.bookID and userID='"+userBean.userID+"';";
+            ResultSet resultSet = statement.executeQuery(sql);
+            ArrayList<Object> borrowWithBookBeans_obj = fullSetupMultiByQuery(resultSet, BorrowWithBookBean.class);
+//            ArrayList<BorrowWithBookBean> borrowWithBookBeans = (ArrayList<BorrowWithBookBean>) statement.executeQuery(sql);
+            ArrayList<BorrowWithBookBean> borrowWithBookBeans = new ArrayList<>();
+            for(int i = 0;i<borrowWithBookBeans_obj.size();i++){
+                borrowWithBookBeans.add((BorrowWithBookBean)borrowWithBookBeans_obj.get(i));
+            }
+            return borrowWithBookBeans;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
     }
 }

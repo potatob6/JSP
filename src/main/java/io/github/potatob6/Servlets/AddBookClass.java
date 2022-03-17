@@ -14,11 +14,11 @@ import java.io.Writer;
 public class AddBookClass extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String classID = req.getParameter("classID");
+//        int classID = Integer.parseInt(req.getParameter("classID")); 不需提供classID，自增
         String className = req.getParameter("className");
         System.out.println("分类类型："+className);
         BookClassBean bookClassBean = new BookClassBean();
-        bookClassBean.classID = classID;
+//        bookClassBean.classID = classID;
         bookClassBean.className = className;
         OurDatabase ourDatabase = OurDatabase.getDataBase();
         boolean result = ourDatabase.addBookClass(bookClassBean);

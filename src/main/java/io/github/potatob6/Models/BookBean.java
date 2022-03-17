@@ -1,13 +1,18 @@
 package io.github.potatob6.Models;
 
+import io.github.potatob6.Annos.AutoIncrement;
+import io.github.potatob6.Annos.PrimaryKey;
 import io.github.potatob6.Annos.SQLSeq;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 
 public class BookBean {
+
+    @PrimaryKey
+    @AutoIncrement
     @SQLSeq(order = 1)
-    public String bookID;
+    public int bookID;
 
     @SQLSeq(order = 2)
     public String classID;
@@ -27,11 +32,11 @@ public class BookBean {
     @SQLSeq(order = 7)
     public int storageCount;
 
-    public String getBookID() {
+    public int getBookID() {
         return bookID;
     }
 
-    public void setBookID(String bookID) {
+    public void setBookID(int bookID) {
         this.bookID = bookID;
     }
 
