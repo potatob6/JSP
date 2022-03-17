@@ -328,7 +328,13 @@ public class OurDatabase {
             Connection connection = this.getConnection();
             Statement statement = conn.createStatement();
             String sql = "select borrowID, Book.bookID, userID, borrowDate, timeLimit, returnedDate, overtimeCharge, bookName from Borrow, Book where Borrow.bookID=Book.bookID and userID='"+userBean.userID+"';";
-            ArrayList<BorrowWithBookBean> borrowWithBookBeans = (ArrayList<BorrowWithBookBean>) statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(sql);
+            ArrayList<Object> borrowWithBookBeans_obj = fullSetupMultiByQuery(resultSet, BorrowWithBookBean.class);
+//            ArrayList<BorrowWithBookBean> borrowWithBookBeans = (ArrayList<BorrowWithBookBean>) statement.executeQuery(sql);
+            ArrayList<BorrowWithBookBean> borrowWithBookBeans = new ArrayList<>();
+            for(int i = 0;i<borrowWithBookBeans_obj.size();i++){
+                borrowWithBookBeans.add((BorrowWithBookBean)borrowWithBookBeans_obj.get(i));
+            }
             return borrowWithBookBeans;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
