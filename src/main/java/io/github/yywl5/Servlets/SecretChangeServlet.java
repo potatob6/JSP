@@ -1,5 +1,6 @@
 package io.github.yywl5.Servlets;
 
+import io.github.potatob6.Models.UserBean;
 import io.github.potatob6.Wrapper.EncodingWrapper;
 
 import javax.servlet.*;
@@ -34,7 +35,7 @@ public class SecretChangeServlet extends HttpServlet {
         String errmsg = "";
         response.setContentType("text ml;charset=gb2312");
         try{
-            OurDatabase editpasswordseek = OurDatabase.getDataBase();
+            UserBean userBean = new UserBean();
             if (username==null || password ==null || password2 == null){
                 response.sendRedirect("reSecretChange.jsp?errmsg=inforamtion error");
             }
