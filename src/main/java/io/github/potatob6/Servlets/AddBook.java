@@ -24,7 +24,7 @@ public class AddBook extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EncodingWrapper encodingWrapper = new EncodingWrapper(req);
-        String bookID = encodingWrapper.getParameter("bookID");
+//        String bookID = encodingWrapper.getParameter("bookID");    不需要提供bookID，自增
         String classID = encodingWrapper.getParameter("classID");
         String bookName = encodingWrapper.getParameter("bookName");
         String publisher = encodingWrapper.getParameter("publisher");
@@ -40,7 +40,6 @@ public class AddBook extends HttpServlet {
                 nowDay.get(Calendar.DAY_OF_MONTH));
 
         bookBean.setStorageDate(Date.valueOf(formatter.out().toString()));
-        bookBean.setBookID(bookID);
         bookBean.setBookName(bookName);
         bookBean.setClassID(classID);
         bookBean.setPublisher(publisher);

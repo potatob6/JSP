@@ -1,5 +1,7 @@
 package io.github.potatob6.Models;
 
+import io.github.potatob6.Annos.AutoIncrement;
+import io.github.potatob6.Annos.PrimaryKey;
 import io.github.potatob6.Annos.SQLSeq;
 
 import java.math.BigDecimal;
@@ -65,6 +67,7 @@ public class UserBean {
         this.balance = balance;
     }
 
+    @PrimaryKey
     @SQLSeq(order = 1)
     public String userID;
     @SQLSeq(order = 2)
