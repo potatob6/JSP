@@ -89,7 +89,7 @@
                                     int storageCount = rs.getInt(7);
                                     out.println("<tr><td>" + bookID + "</td><td>"  + classID + "</td><td>" + bookName + "</td><td>"
                                             + publisher + "</td><td>" + originPrice + "</td><td>" + storageDate + "</td><td>"
-                                            + storageCount + "</td><td><a class=\"btn btn-primary\" href=\"/JSP/borrowBook?action=post\">借阅</a></td><tr>");
+                                            + storageCount + "</td><td><a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\" >借阅</a></td><tr>");
                                     session.setAttribute("bookID",bookID);
                                 }
                             }catch(SQLException e){
@@ -101,23 +101,23 @@
 <%--                </form>--%>
 
             </div>
-<%--            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
-<%--                <div class="modal-dialog" role="document">--%>
-<%--                    <div class="modal-content">--%>
-<%--                        <div class="modal-header">--%>
-<%--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
-<%--                            <h4 class="modal-title" id="myModalLabel">借阅数量</h4>--%>
-<%--                        </div>--%>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">确认借阅？</h4>
+                        </div>
 <%--                        <div class="modal-body">--%>
 <%--                            <input type="text" name="count" value="">--%>
 <%--                        </div>--%>
-<%--                        <div class="modal-footer">--%>
-<%--                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>--%>
-<%--                            <a type="button" class="btn btn-primary" href="/borrowBook">确认借阅</a>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <a type="button" class="btn btn-primary" href="/JSP/borrowBook?action=post">确认</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

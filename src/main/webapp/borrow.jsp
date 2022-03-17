@@ -84,13 +84,13 @@
                 OurDatabase ourDatabase = OurDatabase.getDataBase();
                 ArrayList<BorrowWithBookBean> ls = ourDatabase.queryUserAllBorrowed(userBean);
                 for(int i = 0; i < ls.size(); i++) {
-                  int borrowID = ls.get(0).borrowID;
-                  int bookID = ls.get(1).bookID;
-                  String userID =  ls.get(2).userID;
-                  Date borrowDate = ls.get(3).borrowDate;
-                  int timeLimit = ls.get(4).timeLimit ;
-                  Date returnedDate = ls.get(5).returnedDate ;
-                  BigDecimal overtimeCharge = ls.get(6).overtimeCharge;
+                  int borrowID = ls.get(i).borrowID;
+                  int bookID = ls.get(i).bookID;
+                  String userID =  ls.get(i).userID;
+                  Date borrowDate = ls.get(i).borrowDate;
+                  int timeLimit = ls.get(i).timeLimit ;
+                  Date returnedDate = ls.get(i).returnedDate ;
+                  BigDecimal overtimeCharge = ls.get(i).overtimeCharge;
 
                   //while(rs.next()){
                   //  int bookID = rs.getInt(1);
@@ -102,31 +102,30 @@
                   //  int storageCount = rs.getInt(7);
                   out.println("<tr><td>" + borrowID + "</td><td>"  + bookID + "</td><td>" + userID + "</td><td>"
                           + borrowDate + "</td><td>" + timeLimit + "</td><td>" + returnedDate + "</td><td>"
-                          + overtimeCharge + "</td><td><a class=\"btn btn-primary\" href=\"#\">归还</a></td><tr>");
-
+                          + overtimeCharge + "</td><td><a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">归还</a></td><tr>");
                 }
               %>
             </tr>
           </table>
         </form>
       </div>
-      <%--            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
-      <%--                <div class="modal-dialog" role="document">--%>
-      <%--                    <div class="modal-content">--%>
-      <%--                        <div class="modal-header">--%>
-      <%--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
-      <%--                            <h4 class="modal-title" id="myModalLabel">借阅数量</h4>--%>
-      <%--                        </div>--%>
-      <%--                        <div class="modal-body">--%>
-      <%--                            <input type="text" name="count" value="">--%>
-      <%--                        </div>--%>
-      <%--                        <div class="modal-footer">--%>
-      <%--                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>--%>
-      <%--                            <a type="button" class="btn btn-primary" href="/borrowBook">确认借阅</a>--%>
-      <%--                        </div>--%>
-      <%--                    </div>--%>
-      <%--                </div>--%>
-      <%--            </div>--%>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">确认归还？</h4>
+                  </div>
+<%--                  <div class="modal-body">--%>
+<%--                      <input type="text" name="count" value="">--%>
+<%--                  </div>--%>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                      <a type="button" class="btn btn-primary" href="#">确认</a>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
   </body>
 </html>
