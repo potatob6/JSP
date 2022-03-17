@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +65,10 @@
                                 </div>
                             </div>
                             <br>
+                                <%request.setCharacterEncoding("utf-8");%>
+                                <% if (null!=request.getParameter("errmsg"))
+                                    out.println("错误信息："+request.getParameter("errmsg"));
+                                %>
                             </br>
                             <div class="form-actions">
                                 &nbsp;
