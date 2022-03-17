@@ -42,6 +42,25 @@ public class SecretChangeServlet extends HttpServlet {
             encodingResponse.println("两次密码不一致");
             return;
         }
+        response.setContentType("text ml;charset=gb2312");
+        try{
+            OurDatabase editpasswordseek = OurDatabase.getDataBase();
+            if (username==null || password ==null || password2 == null){
+                response.sendRedirect("reSecretChange.jsp?errmsg=inforamtion error");
+            }
+            if(password.equals(password2)){
+                //多判断条件, 即数据库中该密码与输入密码相等
+                errmsg = "密码修改成功";
+                request.setAttribute("errmsg",errmsg);
+                request.getRequestDispatcher("login.jsp").forward(request,response);
+            }else{
+                errmsg = "出错,请重新设置";
+                request.setAttribute("errmsg",errmsg);
+                response.sendRedirect("reSecretChange.jsp?errmsg=database error");
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
         UserBean userBean = (UserBean) request.getSession().getAttribute("login");
         OurDatabase ourDatabase = OurDatabase.getDataBase();
         UserBean newUserBean = (UserBean) ourDatabase.copyBean(userBean, UserBean.class);
