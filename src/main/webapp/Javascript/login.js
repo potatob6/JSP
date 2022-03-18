@@ -103,10 +103,10 @@ window.onload = function() {
         if ((name.value == null || name.value == "") || (pwd.value == null || pwd.value == "")) {
             alert("用户名或密码不能为空!!");
         } else if (name.value == "1234" && pwd.value == "1234") {
-            alert("登录成功");
-            window.location.href = "../index.html";
+//            alert("登录成功");
+//            window.location.href = "../index.html";
         } else {
-            alert("用户名错误或者密码错误");
+            //alert("用户名错误或者密码错误");
         }
     })
 
