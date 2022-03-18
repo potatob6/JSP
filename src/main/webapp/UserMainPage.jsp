@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="io.github.potatob6.Models.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,16 +65,16 @@
                 <div id="NavNoChange">
                     <ul class="nav-items">
                         <li class="nav-link">
-                            <a href="#" id="linkedA">首页</a>
+                            <a href="./index.jsp" id="linkedA">首页</a>
                         </li>
                         <li class="nav-link">
                             <a href="#" id="linkedA">我的空间</a>
                         </li>
                         <li class="nav-link">
-                            <a href="#" id="linkedA">个人登录</a>
+                            <a href="./login.jsp" id="linkedA">个人登录</a>
                         </li>
                         <li class="nav-link">
-                            <a href="#" id="linkedA">图书查询</a>
+                            <a href="./book.jsp" id="linkedA">图书查询</a>
                         </li>
                         <li class="nav-link">
                             <a href="#" id="linkedA">星星云</a>
@@ -100,32 +103,48 @@
 </div>
 <!--位置提示-->
 <!--main-->
+<%
+    UserBean userBean = ((UserBean)session.getAttribute("login"));
+    //获取用户借的书总数
+    OurDatabase ourDatabase = OurDatabase.getDataBase();
+    int count = 0;
+    try {
+        Connection connection = ourDatabase.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("select count(borrowID) from Borrow where userID="+userBean.getUserID()+";");
+        if(resultSet.next()){
+            count = resultSet.getInt(1);
+        }
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
+%>
 <div class="PersonalSpaceMain">
     <div class="wrapper clearfix">
         <div class="PersonalSpaceLeft fl">
             <h4>
                 <a href="#"><img src="images/HeadImage.png" /></a>
                 <p class="clearfix">
-                <span class="fl">[星包客]</span
+                <span class="fl"><%=userBean.getNickname() %></span
                 ><span class="fr">[退出登录]</span>
                 </p>
             </h4>
             <div>
                 <h4>我的图书</h4>
                 <ul>
-                    <li><a href="cart.html">我的图书</a></li>
+                    <li><a href="./borrow.jsp">我的图书</a></li>
                     <li><a href="myorderq.html">我的会员</a></li>
-                    <li><a href="myprod.html">书籍评价</a></li>
+                    <li><a href="./book.jsp">书籍评价</a></li>
                 </ul>
                 <h4>个人中心</h4>
                 <ul>
                     <li class="on"><a href="mygxin.html">我的中心</a></li>
-                    <li><a href="address.html">借阅管理</a></li>
+                    <li><a href="./borrow.jsp">借阅管理</a></li>
                 </ul>
                 <h4>账户管理</h4>
                 <ul>
-                    <li><a href="mygrxx.html">个人信息</a></li>
-                    <li><a href="remima.html">修改密码</a></li>
+                    <li><a href="#">个人信息</a></li>
+                    <li><a href="./SecretChange.jsp">修改密码</a></li>
                 </ul>
             </div>
         </div>
@@ -134,31 +153,31 @@
                 <div class="fl clearfix">
                     <a href="#" class="fl"><img src="images/HeadImage.png" /></a>
                     <p class="fl">
-                        <span>星包客</span><a href="mygrxx.html">修改个人信息></a>
+                        <span>星包客</span><a href="#">修改个人信息></a>
                     </p>
                 </div>
-                <div class="fr">绑定邮箱：14****0@qq.com</div>
+                <div class="fr">绑定用户ID：<%=userBean.getUserID() %></div>
             </div>
             <div class="PersonalSpaceMain">
                 <div class="clearfix">
                     <a href="#" class="fl"><img src="images/gxin1.jpg" /></a>
                     <p class="fl">
-                        <span>个人信息：<strong>0</strong></span>
-                        <a href="myorderq.html">查看个人信息></a>
+                        <span>个人余额：<strong><%=userBean.getBalance() %></strong></span>
+                        <a href="#">查看个人信息></a>
                     </p>
                 </div>
                 <div class="clearfix">
                     <a href="#" class="fl"><img src="images/gxin2.jpg" /></a>
                     <p class="fl">
-                        <span>借阅图书：<strong>0</strong></span>
-                        <a href="myorderq.html">查看借阅图书></a>
+                        <span>借阅图书：<strong><%=count %></strong></span>
+                        <a href="./borrow.jsp">查看借阅图书></a>
                     </p>
                 </div>
                 <div class="clearfix">
                     <a href="#" class="fl"><img src="images/gxin3.jpg" /></a>
                     <p class="fl">
                         <span>待评价图书：<strong>0</strong></span>
-                        <a href="myprod.html">查看待评价图书></a>
+                        <a href="#">查看待评价图书></a>
                     </p>
                 </div>
                 <div class="clearfix">

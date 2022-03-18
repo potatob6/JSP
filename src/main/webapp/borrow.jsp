@@ -3,6 +3,7 @@
 <%@ page import="io.github.potatob6.Models.OurDatabase" %>
 <%@ page import="io.github.potatob6.Models.UserBean" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.*" %>
 <%@ page import="io.github.potatob6.Models.BorrowWithBookBean" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -124,6 +125,17 @@
                         <% out.println((returnedDate==null)?"未归还":returnedDate); %>
                     </td>
                     <td>
+                        <%
+                            Calendar nowCalendar = Calendar.getInstance();
+                            Calendar borrowCalendar = Calendar.getInstance();
+                            StringTokenizer strTok = new StringTokenizer(borrowDate.toString(), "-");
+                            borrowCalendar.set(Calendar.YEAR, Integer.parseInt(strTok.nextToken()));
+                            borrowCalendar.set(Calendar.MONTH, Integer.parseInt(strTok.nextToken())-1);
+                            borrowCalendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(strTok.nextToken()));
+                            int day = (int) ((nowCalendar.getTimeInMillis() - borrowCalendar.getTimeInMillis()) / (1000 * 60 * 60 * 24));
+                            //每超时10天加收4.5元
+                            double overTimeCharge = (day - timeLimit) * 5.5;
+                        %>
                         <%=overtimeCharge %>
                     </td>
                     <td>
