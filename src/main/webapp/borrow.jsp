@@ -38,17 +38,17 @@
         <nav class="navbar navbar-default" role="navigation" style="background-color:#fff">
           <div class="container-fluid">
             <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
-              <a class="navbar-brand " href="#"><p class="text-primary">我的图书馆</p></a>
+              <a class="navbar-brand " href="./book.jsp"><p class="text-primary">我的图书馆</p></a>
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
               <ul class="nav navbar-nav navbar-left">
                 <li class="active">
-                  <a href="#" >
+                  <a href="./book.jsp" >
                     图书查询
                   </a>
                 </li>
                 <li>
-                  <a href="#" >
+                  <a href="./UserMainPage.jsp" >
                     个人信息
                   </a>
                 </li>
@@ -58,7 +58,7 @@
                   </a>
                 </li>
                 <li >
-                  <a href="#" >
+                  <a href="./SecretChange.jsp" >
                     密码修改
                   </a>
                 </li>
@@ -66,7 +66,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <% UserBean userBean1 = (UserBean)session.getAttribute("login"); %>
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=userBean1.getNickname() %>，已登录</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
+                <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
               </ul>
             </div>
           </div>
@@ -75,7 +75,7 @@
       <h2>借阅列表</h2>
       <%-- 图书列表 --%>
       <div>
-        <form>
+        <form action="/JSP/extend" method="get">
           <table class="table table-hover">
             <tr>
               <th>借阅ID</th>
@@ -103,11 +103,42 @@
                   Date returnedDate = ls.get(i).returnedDate ;
                   String bookName = ls.get(i).bookName;
                   BigDecimal overtimeCharge = ls.get(i).overtimeCharge;
-                  out.println("<tr><td>" + borrowID + "</td><td>"  + bookName + "</td><td>" + nickname + "</td><td>"
-                          + borrowDate + "</td><td>" + timeLimit + "天</td><td>" + ((returnedDate==null)?"未归还":returnedDate) + "</td><td>"
-                          + overtimeCharge + "</td><td>"+((returnedDate==null)?"<a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">归还</a>":"已归还")
-                          + ((returnedDate==null)?"<form class=\"extend_form\" action=\"/JSP/extend\"><input type=\"submit\" class=\"btn btn-primary\" data-toggle=\"modal\" value=\"申请延长时间\"></input><input name=\"borrowID\" hidden value=\""+borrowID+"\"/><input class=\"ext_inp\" name=\"duration\"/></form>":"")
-                          +"</td><tr>");
+              %>
+                <tr>
+                    <td>
+                        <%=borrowID %>
+                    </td>
+                    <td>
+                        <%=bookName %>
+                    </td>
+                    <td>
+                        <%=nickname %>
+                    </td>
+                    <td>
+                        <%=borrowDate %>
+                    </td>
+                    <td>
+                        <%=timeLimit %>
+                    </td>
+                    <td>
+                        <% out.println((returnedDate==null)?"未归还":returnedDate); %>
+                    </td>
+                    <td>
+                        <%=overtimeCharge %>
+                    </td>
+                    <td>
+                        <% if(returnedDate==null) { %>
+                               <a class="btn btn-primary" href="/JSP/returnBook?borrowID=<%=borrowID %>" data-target="#myModal">归还</a>
+                               <form class="extend_form" action="/JSP/extend">
+                                    <input type="submit" class="btn btn-primary" data-toggle="modal" value="申请延长时间" />
+                                    <input name="borrowID" hidden value="<%=borrowID %>" />
+                                    <input class="ext_inp" name="duration" />
+                               </form>
+                        <% } else { %>
+                               已归还
+                        <% } %>
+                    </td>
+              <%
                 }
               %>
             </tr>
