@@ -11,7 +11,10 @@ import java.io.IOException;
 /**
  * 检查是否登录
  */
-@WebFilter(urlPatterns = {"/borrow","/SecretChange.jsp", "/UserMainPage.jsp", "/SecretChangeServlet", "/borrow.jsp", "/extend"})
+@WebFilter(urlPatterns = {"/borrow",
+        "/SecretChange.jsp", "/UserMainPage.jsp",
+        "/SecretChangeServlet", "/borrow.jsp",
+        "/extend", "/returnBook"})
 public class LoginedFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -23,10 +26,11 @@ public class LoginedFilter implements Filter {
         Object object = ((HttpServletRequest)servletRequest).getSession().getAttribute("login");
         if(object==null){
             //未登录
-            servletResponse.setContentType("text/html; charset=utf-8");
-            EncodingResponse encodingResponse = new EncodingResponse((HttpServletResponse) servletResponse);
-            encodingResponse.println("未登录");
+//            servletResponse.setContentType("text/html; charset=utf-8");
+//            EncodingResponse encodingResponse = new EncodingResponse((HttpServletResponse) servletResponse);
+//            encodingResponse.println("未登录");
 //            servletResponse.getOutputStream().println("未登录");
+            ((HttpServletResponse)servletResponse).sendRedirect("/JSP/login.jsp");
             return;
         }
         filterChain.doFilter(servletRequest, servletResponse);

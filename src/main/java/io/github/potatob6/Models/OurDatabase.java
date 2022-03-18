@@ -612,6 +612,10 @@ public class OurDatabase {
         return null;
     }
 
+    /**
+     * 查询所有书籍带上书类别名称
+     * @return {@link ArrayList<BorrowWithBookBean>} 书籍集合
+     */
     public ArrayList<Object> queryBookWithClass() {
         try {
             Connection connection = this.getConnection();
@@ -625,5 +629,16 @@ public class OurDatabase {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 获取当前时间
+     * @return {@link java.sql.Date} SQL日期对象
+     */
+    public java.sql.Date getNowDate(){
+        Calendar nowDay = Calendar.getInstance();
+        Formatter formatter = new Formatter();
+        formatter.format("%04d-%02d-%02d", nowDay.get(Calendar.YEAR), nowDay.get(Calendar.MONTH)+1, nowDay.get(Calendar.DAY_OF_MONTH));
+        return Date.valueOf(formatter.out().toString());
     }
 }
