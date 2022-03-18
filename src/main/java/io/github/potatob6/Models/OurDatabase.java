@@ -43,7 +43,7 @@ public class OurDatabase {
         driver = Class.forName("com.mysql.cj.jdbc.Driver");
     }
 
-    private Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         if(this.conn != null){
             return this.conn;
         }else{
