@@ -9,211 +9,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>用户主界面</title>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="css/fullcalendar.css" />
-    <link rel="stylesheet" href="css/jquery.gritter.css" />
-    <link rel="stylesheet" href="css/matrix-style2.css" />
-    <link rel="stylesheet" href="css/matrix-media.css" />
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/nav.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link
+            href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/public.css" />
 </head>
 <body>
-
-<div id="content">
-    <div  class="quick-actions_homepage">
-        <ul class="quick-actions">
-            <li class="bg_lb"> <a href="#"> <i class="icon-dashboard"></i> My Dashboard </a> </li>
-            <li class="bg_lg"> <a href="#"> <i class="icon-shopping-cart"></i> Shopping Cart</a> </li>
-            <li class="bg_ly"> <a href="#"> <i class=" icon-globe"></i> Web Marketing </a> </li>
-            <li class="bg_lo"> <a href="#"> <i class="icon-group"></i> Manage Users </a> </li>
-            <li class="bg_ls"> <a href="#"> <i class="icon-signal"></i> Check Statistics</a> </li>
-        </ul>
-    </div>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span6">
-                <div class="widget-box">
-                    <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
-                        <h5>Latest Posts</h5>
-                    </div>
-                    <div class="widget-content nopadding collapse in" id="collapseG2">
-                        <ul class="recent-posts">
-                            <li>
-                                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
-                                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                                    <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
-                                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                                    <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av4.jpg"> </div>
-                                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                                    <p><a href="#">This is a much longer one that will go on for a few lines.Itaffle to pad out the comment.</a> </p>
-                                </div>
-                            <li>
-                                <button class="btn btn-warning btn-mini">View All</button>
-                            </li>
-                        </ul>
-                    </div>
+<!--navigation section-->
+<header>
+    <nav class="NoChangeNav">
+        <div class="NavNoChange_fr">
+            <p class="NavNoChange_fl">
+                <a href="#">中国大陆</a>
+            </p>
+            <div class="NavNoChange_search">
+                <form action="#" method="get" class="NavNoChange_fl2">
+                    <input type="text" placeholder="热门搜索：机械师" />
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </form>
+                <a href="mygxin.html"
+                ><i class="fa fa-user" aria-hidden="true"></i
+                ></a>
+                <a href="#" class="er1"
+                ><i class="fa fa-qrcode" aria-hidden="true"></i
+                ></a>
+                <div class="topbar-cart pull-right">
+                    <a href="#" class="er1"><i></i>联系客服</a>
                 </div>
-                <div class="widget-box">
-                    <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-                        <h5>To Do list</h5>
-                    </div>
-                    <div class="widget-content">
-                        <div class="todo">
-                            <ul>
-                                <li class="clearfix">
-                                    <div class="txt"> 每日新闻 <span class="by label">Nirav</span> <span class="date badge badge-important">Today</span> </div>
-                                    <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="txt"> Manage Pending Orders <span class="by label">Alex</span> <span class="date badge badge-warning">Today</span> </div>
-                                    <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="txt"> MAke your desk clean <span class="by label">Admin</span> <span class="date badge badge-success">Tomorrow</span> </div>
-                                    <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="txt"> Today we celebrate the great looking theme <span class="by label">Admin</span> <span class="date badge badge-info">08.03.2013</span> </div>
-                                    <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="txt"> Manage all the orders <span class="by label">Mark</span> <span class="date badge badge-info">12.03.2013</span> </div>
-                                    <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="span6">
-                <div class="widget-box">
-                    <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-                        <h5>Progress Box</h5>
-                    </div>
-                    <div class="widget-content">
-                        <ul class="unstyled">
-                            <li> <span class="icon24 icomoon-icon-arrow-up-2 green"></span> 81% Clicks <span class="pull-right strong">567</span>
-                                <div class="progress progress-striped ">
-                                    <div style="width: 81%;" class="bar"></div>
-                                </div>
-                            </li>
-                            <li> <span class="icon24 icomoon-icon-arrow-up-2 green"></span> 72% Uniquie Clicks <span class="pull-right strong">507</span>
-                                <div class="progress progress-success progress-striped ">
-                                    <div style="width: 72%;" class="bar"></div>
-                                </div>
-                            </li>
-                            <li> <span class="icon24 icomoon-icon-arrow-down-2 red"></span> 53% Impressions <span class="pull-right strong">457</span>
-                                <div class="progress progress-warning progress-striped ">
-                                    <div style="width: 53%;" class="bar"></div>
-                                </div>
-                            </li>
-                            <li> <span class="icon24 icomoon-icon-arrow-up-2 green"></span> 3% Online Users <span class="pull-right strong">8</span>
-                                <div class="progress progress-danger progress-striped ">
-                                    <div style="width: 3%;" class="bar"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="widget-box">
-                    <div class="widget-title bg_lo"  data-toggle="collapse" href="#collapseG3" > <span class="icon"> <i class="icon-chevron-down"></i> </span>
-                        <h5>News updates</h5>
-                    </div>
-                    <div class="widget-content nopadding updates collapse in" id="collapseG3">
-                        <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-                            <div class="update-done"><a title="" href="#"><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong></a> <span>dolor sit amet, consectetur adipiscing eli</span> </div>
-                            <div class="update-date"><span class="update-day">20</span>jan</div>
-                        </div>
-                        <div class="new-update clearfix"> <i class="icon-gift"></i> <span class="update-notice"> <a title="" href="#"><strong>Congratulation Maruti, Happy Birthday </strong></a> <span>many many happy returns of the day</span> </span> <span class="update-date"><span class="update-day">11</span>jan</span> </div>
-                        <div class="new-update clearfix"> <i class="icon-move"></i> <span class="update-alert"> <a title="" href="#"><strong>Maruti is a Responsive Admin theme</strong></a> <span>But already everything was solved. It will ...</span> </span> <span class="update-date"><span class="update-day">07</span>Jan</span> </div>
-                        <div class="new-update clearfix"> <i class="icon-leaf"></i> <span class="update-done"> <a title="" href="#"><strong>Envato approved Maruti Admin template</strong></a> <span>i am very happy to approved by TF</span> </span> <span class="update-date"><span class="update-day">05</span>jan</span> </div>
-                        <div class="new-update clearfix"> <i class="icon-question-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>I am alwayse here if you have any question</strong></a> <span>we glad that you choose our template</span> </span> <span class="update-date"><span class="update-day">01</span>jan</span> </div>
-                    </div>
-                </div>
+                <p>
+                    <a href="#"><img src="" /></a>
+                </p>
             </div>
         </div>
-        <hr>
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="widget-box widget-calendar">
-                    <div class="widget-title"> <span class="icon"><i class="icon-calendar"></i></span>
-                        <h5>Calendar</h5>
-                        <div class="buttons"> <a id="add-event" data-toggle="modal" href="#modal-add-event" class="btn btn-inverse btn-mini"><i class="icon-plus icon-white"></i> Add new event</a>
-                            <div class="modal hide" id="modal-add-event">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">×</button>
-                                    <h3>Add a new event</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Enter event name:</p>
-                                    <p>
-                                        <input id="event-name" type="text" />
-                                    </p>
-                                </div>
-                                <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Cancel</a> <a href="#" id="add-event-submit" class="btn btn-primary">Add event</a> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-content">
-                        <div class="panel-left">
-                            <div id="fullcalendar"></div>
-                        </div>
-                        <div id="external-events" class="panel-right">
-                            <div class="panel-title">
-                                <h5>Drag Events to the calander</h5>
-                            </div>
-                            <div class="panel-content">
-                                <div class="external-event ui-draggable label label-inverse">My Event 1</div>
-                                <div class="external-event ui-draggable label label-inverse">My Event 2</div>
-                                <div class="external-event ui-draggable label label-inverse">My Event 3</div>
-                                <div class="external-event ui-draggable label label-inverse">My Event 4</div>
-                                <div class="external-event ui-draggable label label-inverse">My Event 5</div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="nav-menu flex-row">
+            <div class="nav-brand">
+                <a href="#" class="text-gray">星星之光</a>
+            </div>
+            <div class="toggle-collapse">
+                <div class="toggle-icons">
+                    <i class="fas fa-bars"> </i>
+                </div>
+            </div>
+            <div>
+                <div id="NavNoChange">
+                    <ul class="nav-items">
+                        <li class="nav-link">
+                            <a href="#" id="linkedA">首页</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#" id="linkedA">我的空间</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#" id="linkedA">个人登录</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#" id="linkedA">图书查询</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#" id="linkedA">星星云</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="socal text-gray">
+                <a href="#"><i class="fab fa-weixin" aria-hidden="true"></i></a>
+                <a href="#"><i class="fab fa-weibo" aria-hidden="true"></i></a>
+                <a href="#"><i class="fab fa-qq" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </nav>
+</header>
+<!--navigation section-->
+<!--PersonalSpace-->
+<!--位置提示-->
+<div class="address" id="add">
+    <div class="wrapper clearfix">
+        <a href="index.html" class="fl">首页</a>
+        <span>/</span>
+        <a href="mygxin.html" class="on">个人中心</a>
+    </div>
+</div>
+<!--位置提示-->
+<!--main-->
+<div class="PersonalSpaceMain">
+    <div class="wrapper clearfix">
+        <div class="PersonalSpaceLeft fl">
+            <h4>
+                <a href="#"><img src="images/HeadImage.png" /></a>
+                <p class="clearfix">
+                <span class="fl">[星包客]</span
+                ><span class="fr">[退出登录]</span>
+                </p>
+            </h4>
+            <div>
+                <h4>我的图书</h4>
+                <ul>
+                    <li><a href="cart.html">我的图书</a></li>
+                    <li><a href="myorderq.html">我的会员</a></li>
+                    <li><a href="myprod.html">书籍评价</a></li>
+                </ul>
+                <h4>个人中心</h4>
+                <ul>
+                    <li class="on"><a href="mygxin.html">我的中心</a></li>
+                    <li><a href="address.html">借阅管理</a></li>
+                </ul>
+                <h4>账户管理</h4>
+                <ul>
+                    <li><a href="mygrxx.html">个人信息</a></li>
+                    <li><a href="remima.html">修改密码</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="PersonalSpaceRight fl">
+            <div class="PersonalInformation clearfix">
+                <div class="fl clearfix">
+                    <a href="#" class="fl"><img src="images/HeadImage.png" /></a>
+                    <p class="fl">
+                        <span>星包客</span><a href="mygrxx.html">修改个人信息></a>
+                    </p>
+                </div>
+                <div class="fr">绑定邮箱：14****0@qq.com</div>
+            </div>
+            <div class="PersonalSpaceMain">
+                <div class="clearfix">
+                    <a href="#" class="fl"><img src="images/gxin1.jpg" /></a>
+                    <p class="fl">
+                        <span>个人信息：<strong>0</strong></span>
+                        <a href="myorderq.html">查看个人信息></a>
+                    </p>
+                </div>
+                <div class="clearfix">
+                    <a href="#" class="fl"><img src="images/gxin2.jpg" /></a>
+                    <p class="fl">
+                        <span>借阅图书：<strong>0</strong></span>
+                        <a href="myorderq.html">查看借阅图书></a>
+                    </p>
+                </div>
+                <div class="clearfix">
+                    <a href="#" class="fl"><img src="images/gxin3.jpg" /></a>
+                    <p class="fl">
+                        <span>待评价图书：<strong>0</strong></span>
+                        <a href="myprod.html">查看待评价图书></a>
+                    </p>
+                </div>
+                <div class="clearfix">
+                    <a href="#" class="fl"><img src="images/gxin4.jpg" /></a>
+                    <p class="fl">
+                        <span>喜欢的图书：<strong>0</strong></span>
+                        <a href="#">查看喜欢的图书></a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--main-->
+<!--PersonalSpace-->
 
-
-<script type="text/javascript">
-    // This function is called from the pop-up menus to transfer to
-    // a different page. Ignore if the value returned is a null string:
-    function goPage (newURL) {
-
-        // if url is empty, skip the menu dividers and reset the menu selection to default
-        if (newURL != "") {
-
-            // if url is "-", it is this page -- reset the menu:
-            if (newURL == "-" ) {
-                resetMenu();
-            }
-            // else, send page to designated URL
-            else {
-                document.location.href = newURL;
-            }
-        }
-    }
-
-    // resets the menu selection upon entry to this page:
-    function resetMenu() {
-        document.gomenu.selector.selectedIndex = 2;
-    }
-</script>
+<!--footer-->
+<div class="footer">
+    <div class="footer_container w">
+        <div class="footer_social">
+            <a href=""><img src="./images/camscanner.png" alt="官方微博" /></a>
+            <a href=""><img src="images/camscanner.png" alt="官方公众号" /></a>
+            <a href=""><img src="images/camu_camera.png" alt="客服QQ" /></a>
+        </div>
+        <div class="footer_copyright">Copyright 2021</div>
+    </div>
+    <p class="dibu">
+        星星网站&copy;2013-2025公司版权所有
+        陇ICP备080100-44备0000111000号<br />
+        违法和不良信息举报电话：400-800-8200，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试
+    </p>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="/Javascript/public.js"></script>
+<!--footer-->
 </body>
 </html>
+
 
