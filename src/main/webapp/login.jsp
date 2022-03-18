@@ -207,5 +207,6 @@
       </section>
     </main>
     <script src="./Javascript/jquery.js"></script>
+    <script src="./Javascript/login.js"></script>
   </body>
 </html>

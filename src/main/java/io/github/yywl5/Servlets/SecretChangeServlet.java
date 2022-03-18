@@ -36,6 +36,10 @@ public class SecretChangeServlet extends HttpServlet {
         response.setContentType("text ml;charset=gb2312");
         try{
             UserBean userBean = new UserBean();
+            userBean.setUserID(username);
+            OurDatabase EditPassword = OurDatabase.getDataBase();
+            userBean=EditPassword.querySpecificUserByUserID(userBean);
+            System.out.println(userBean.userID);
             if (username==null || password ==null || password2 == null){
                 response.sendRedirect("reSecretChange.jsp?errmsg=inforamtion error");
             }
