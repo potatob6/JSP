@@ -38,17 +38,17 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/JSP/UserMainPage.jsp" >
+                                    <a href="./UserMainPage.jsp" >
                                         个人信息
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="/JSP/borrow.jsp" >
+                                    <a href="./borrow.jsp" >
                                         我的借还
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="/JSP/SecretChange.jsp" >
+                                    <a href="./SecretChange.jsp" >
                                         密码修改
                                     </a>
                                 </li>
