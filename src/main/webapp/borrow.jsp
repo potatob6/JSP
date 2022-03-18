@@ -7,18 +7,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%
-    Object login = request.getSession().getAttribute("login");
-    if(login==null) {
-%>
-    <html>
-        <body>
-            未登录
-        </body>
-    </html>
-<%
-    } else {
-%>
 <html>
   <head>
     <script src="/JSP/Javascript/jquery-3.6.0.min.js"></script>
@@ -31,7 +19,16 @@
         margin: 0 auto;
         height: auto;
       }
-
+      .extend_form {
+        display: inline-block;
+      }
+      .ext_inp {
+        border: 1px solid gray;
+        border-radius: 10px;
+        outline: none;
+        text-indent: 10px;
+        width: 70px;
+      }
     </style>
   </head>
   <body>
@@ -82,8 +79,8 @@
           <table class="table table-hover">
             <tr>
               <th>借阅ID</th>
-              <th>图书ID</th>
-              <th>用户ID</th>
+              <th>图书名称</th>
+              <th>用户昵称</th>
               <th>借阅日期</th>
               <th>期限</th>
               <th>归还日期</th>
@@ -99,14 +96,18 @@
                 for(int i = 0; i < ls.size(); i++) {
                   int borrowID = ls.get(i).borrowID;
                   int bookID = ls.get(i).bookID;
+                  String nickname = userBean.getNickname();
                   String userID =  ls.get(i).userID;
                   Date borrowDate = ls.get(i).borrowDate;
                   int timeLimit = ls.get(i).timeLimit ;
                   Date returnedDate = ls.get(i).returnedDate ;
+                  String bookName = ls.get(i).bookName;
                   BigDecimal overtimeCharge = ls.get(i).overtimeCharge;
-                  out.println("<tr><td>" + borrowID + "</td><td>"  + bookID + "</td><td>" + userID + "</td><td>"
+                  out.println("<tr><td>" + borrowID + "</td><td>"  + bookName + "</td><td>" + nickname + "</td><td>"
                           + borrowDate + "</td><td>" + timeLimit + "天</td><td>" + ((returnedDate==null)?"未归还":returnedDate) + "</td><td>"
-                          + overtimeCharge + "</td><td>"+((returnedDate==null)?"<a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">归还</a>":"已归还")+"</td><tr>");
+                          + overtimeCharge + "</td><td>"+((returnedDate==null)?"<a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">归还</a>":"已归还")
+                          + ((returnedDate==null)?"<form class=\"extend_form\" action=\"/JSP/extend\"><input type=\"submit\" class=\"btn btn-primary\" data-toggle=\"modal\" value=\"申请延长时间\"></input><input name=\"borrowID\" hidden value=\""+borrowID+"\"/><input class=\"ext_inp\" name=\"duration\"/></form>":"")
+                          +"</td><tr>");
                 }
               %>
             </tr>
@@ -133,4 +134,3 @@
     </div>
   </body>
 </html>
-<% } %>

@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * 检查是否登录
  */
-@WebFilter(urlPatterns = {"/borrow","/SecretChange.jsp", "/UserMainPage.jsp", "/SecretChangeServlet"})
+@WebFilter(urlPatterns = {"/borrow","/SecretChange.jsp", "/UserMainPage.jsp", "/SecretChangeServlet", "/borrow.jsp", "/extend"})
 public class LoginedFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

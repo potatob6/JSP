@@ -1,31 +1,32 @@
 package io.github.potatob6.Models;
 
+import io.github.potatob6.Annos.AutoIncrement;
 import io.github.potatob6.Annos.PrimaryKey;
 import io.github.potatob6.Annos.SQLSeq;
 import io.github.potatob6.Annos.TableName;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Calendar;
+import java.util.Formatter;
 
 @TableName(name = "Borrow")
 public class BorrowBean {
+
     @PrimaryKey
+    @AutoIncrement
     @SQLSeq(order = 1)
     public int borrowID;
 
-    @PrimaryKey
     @SQLSeq(order = 2)
     public int bookID;
 
-    @PrimaryKey
     @SQLSeq(order = 3)
     public String userID;
 
-    @PrimaryKey
     @SQLSeq(order = 4)
     public Date borrowDate;
 
-    @PrimaryKey
     @SQLSeq(order = 5)
     public int timeLimit;
 
@@ -94,10 +95,13 @@ public class BorrowBean {
     public BorrowBean() {
         this.bookID = 0;
         this.borrowID = 0;
-        this.borrowDate = null;
+        Calendar nowDay = Calendar.getInstance();
+        Formatter formatter = new Formatter();
+        formatter.format("%04d-%02d-%02d", nowDay.get(Calendar.YEAR), nowDay.get(Calendar.MONTH)+1, nowDay.get(Calendar.DAY_OF_MONTH));
+        this.setBorrowDate(Date.valueOf(formatter.out().toString()));
         this.userID = null;
         this.timeLimit = 0;
         this.returnedDate = null;
-        this.overtimeCharge = null;
+        this.overtimeCharge = new BigDecimal("0.0");
     }
 }

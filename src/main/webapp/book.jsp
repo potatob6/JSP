@@ -1,6 +1,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.math.BigDecimal" %>
 <%@ page import="java.sql.Date" %>
+<%@ page import="java.util.*" %>
 <%@ page import="io.github.potatob6.Models.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -82,23 +83,20 @@
                         </tr>
                         <%
                             OurDatabase ourDatabase = OurDatabase.getDataBase();
-                            ResultSet rs = ourDatabase.queryAllBook();
-                            try{
-                                while(rs.next()){
-                                    int bookID = rs.getInt(1);
-                                    String classID = rs.getString(2);
-                                    String bookName = rs.getString(3);
-                                    String publisher = rs.getString(4);
-                                    BigDecimal originPrice = rs.getBigDecimal(5);
-                                    Date storageDate = rs.getDate(6);
-                                    int storageCount = rs.getInt(7);
-                                    out.println("<tr><td>" + bookID + "</td><td>"  + classID + "</td><td>" + bookName + "</td><td>"
+                            ArrayList<Object> ary = ourDatabase.queryBookWithClass();
+                            for(int i = 0;i<ary.size();i++)
+                            {
+                                BookWithClassBean b = (BookWithClassBean) ary.get(i);
+                                int bookID = b.bookID;
+                                String className = b.className;
+                                String bookName = b.bookName;
+                                String publisher = b.publisher;
+                                BigDecimal originPrice = b.originPrice;
+                                Date storageDate = b.storageDate;
+                                int storageCount = b.storageCount;
+                                 out.println("<tr><td>" + bookID + "</td><td>"  + className + "</td><td>" + bookName + "</td><td>"
                                             + publisher + "</td><td>" + originPrice + "</td><td>" + storageDate + "</td><td>"
-                                            + storageCount + "</td><td><a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\" >借阅</a></td><tr>");
-                                    session.setAttribute("bookID",bookID);
-                                }
-                            }catch(SQLException e){
-                                out.println("查询所有图书信息失败");
+                                            + storageCount + "</td><td><a href=\"/JSP/borrowBook?bookID="+bookID+"\" class=\"btn btn-primary\" data-target=\"#myModal\" >借阅</a></td><tr>");
                             }
                         %>
                     </table>
@@ -118,7 +116,7 @@
 <%--                        </div>--%>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <a type="button" class="btn btn-primary" href="/JSP/borrowBook?action=post">确认</a>
+                            <a type="button" class="btn btn-primary" href="/JSP/borrowBook?bookID=post">确认</a>
                         </div>
                     </div>
                 </div>
