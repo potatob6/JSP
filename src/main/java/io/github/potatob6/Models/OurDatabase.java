@@ -173,6 +173,7 @@ public class OurDatabase {
                 params[j] = propertyName;
                 if(value==null){
                     params[field_needs+j] = "NULL";
+                    j++;
                     continue;
                 }
 //                preparedStatement.setString(j+1, propertyName);
@@ -407,6 +408,7 @@ public class OurDatabase {
             setupStatement(beanClass, params, object, withoutAutoIncrement);
             Formatter formatter = new Formatter();
             formatter.format(sql, params);
+            System.out.println(formatter.out().toString());
             int result = statement.executeUpdate(formatter.out().toString());
             return true;
         } catch (SQLException throwables) {
@@ -623,6 +625,21 @@ public class OurDatabase {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<Object> queryBookWithClass() {
+        try {
+            Connection connection = this.getConnection();
+            String sql = "select bookID, Book.classID, bookName, publisher, originPrice, storageDate, storageCount, className " +
+                    "from Book, BookClass where Book.classID=BookClass.classID;";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            ArrayList<Object> bookWithClassBeans = fullSetupMultiByQuery(resultSet, BookWithClassBean.class);
+            return bookWithClassBeans;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return null;
     }
