@@ -96,8 +96,8 @@
             </section>
         </div>
     </div>
-    <div class="a1" style="background-color:#88304e">
-        <img src="./images/wallpaper.jpg" alt="" />
+    <div class="a1" style="background-color:transparent">
+        <img src="./images/wallpaper.jpg" alt="" style="border-radius: 0"/>
         <div id="container5p">
             <h2>共享美好时光!</h2>
             <p class="container5_text">
