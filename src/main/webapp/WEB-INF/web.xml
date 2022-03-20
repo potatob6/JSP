@@ -25,7 +25,15 @@
     <servlet-name>SecretChangeServlet</servlet-name>
     <servlet-class>io.github.yywl5.Servlets.SecretChangeServlet</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>CloudManageAll</servlet-name>
+      <servlet-class>io.github.yywl5.Servlets.CloudManageAll</servlet-class>
+  </servlet>
   <servlet-mapping>
+    <servlet-name>CloudManageAll</servlet-name>
+    <url-pattern>/CloudManageAll</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
     <servlet-name>SecretChangeServlet</servlet-name>
     <url-pattern>/SecretChangeServlet</url-pattern>
   </servlet-mapping>

@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="JSP1" />
+        <module name="JSP-2" />
         <module name="JSP" />
         <module name="JSP-1" />
       </profile>
