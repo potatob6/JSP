@@ -314,7 +314,7 @@
 
         function mainTextFontSize(e, r) {
             mainText.style.display = r[0]
-            mainText.style.transform = "scale(" + r[1] + ")"
+            mainText.style.transform = "perspective(300px) translateZ(" + r[1] + "px)"
             mainText.style.opacity = r[2]
         }
 
