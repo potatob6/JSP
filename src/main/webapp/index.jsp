@@ -216,7 +216,7 @@
         <div class="nagivator_item"><a href="./book.jsp">图书浏览</a></div>
         <div class="nagivator_item"><a href="./forum.jsp">留言</a></div>
         <div class="nagivator_item" onclick="aboutDis()">关于</div>
-
+        <div class="nagivator_item" onclick="./AdminMainPage.jsp">管理员入口</div>
 
     </div>
     <div id="bigwhite"></div>
