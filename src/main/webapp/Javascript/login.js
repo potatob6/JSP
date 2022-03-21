@@ -122,7 +122,6 @@ window.onload = function() {
     document.getElementById("register_name").onblur = RegisterConfirms;
     document.getElementById("register_pwd").onblur = PassWord;
     document.getElementById("register_repwd").onblur = CheckRePassword;
-    document.getElementById("register_email").onblur = CheckEmail;
     document.getElementById("register_phone").onblur = CheckTelphone;
     /*********************************注册对象***********************************/
 
