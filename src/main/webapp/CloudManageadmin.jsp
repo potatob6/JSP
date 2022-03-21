@@ -99,7 +99,7 @@
             </div>
             <div class="JuddingFace">
                 <div class="login box">
-                    <form class="form" method="post" action="/ManagerMent">
+                    <form class="form" method="post" action="/JSP/ManagerMent">
                         <h2>登录</h2>
                         <div class="inputBox">
                             <input
