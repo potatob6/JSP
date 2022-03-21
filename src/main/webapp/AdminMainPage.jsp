@@ -116,10 +116,11 @@
                                     <button style="background-color: #b9bbdf; color: white">修改信息</button>
                                     <input name="bookID" value="<%=bookID %>" hidden/>
                                 </form>
-                                <form class="lastTD_form" action="./deleteBook">
+                                <!--<form class="lastTD_form" action="./deleteBook">
                                     <button style="background-color: #f73859; color: #fff">删除图书</button>
                                     <input name="bookID" value="<%=bookID %>" hidden/>
                                 </form>
+                                -->
                             </td>
                         </tr>
                     <%

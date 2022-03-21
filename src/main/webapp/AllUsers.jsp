@@ -124,10 +124,11 @@
                                         <button style="background-color: #b9bbdf; color: white">修改信息</button>
                                         <input name="userID" value="<%=userID %>" hidden/>
                                     </form>
-                                    <form class="lastTD_form" action="./deleteUser">
+                                    <!--<form class="lastTD_form" action="./deleteUser">
                                         <button style="background-color: #f73859; color: #fff">删除用户</button>
                                         <input name="bookID" value="<%=userID %>" hidden/>
                                     </form>
+                                    -->
                                 </td>
                             </tr>
                     <%
