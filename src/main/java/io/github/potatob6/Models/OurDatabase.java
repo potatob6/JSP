@@ -278,30 +278,7 @@ public class OurDatabase {
             return null;
         }
     }
-    /**
-     * 查询特定的用户通过用户ID
-     * @param ManagerBean  Bean，需要提供userID属性
-     * @return          返回 {@link ManagerBean}
-     */
-    public ManagerBean querySpecificManagerByUserID(ManagerBean ManagerBean){
-        String ManagerName = ManagerBean.getUserID();
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from Administrator where userID=?");
-            preparedStatement.setString(1, ManagerName);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                ManagerBean managerBean1 = (ManagerBean) fullSetupSingleByQuery(resultSet, ManagerBean.class);
-                return managerBean1;
-            }
-            return null;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return null;
-        }
-    }
-    private ArrayList<Object> fullSetupMultiByQuery(ResultSet resultSet, Class cl) throws SQLException {
+    public ArrayList<Object> fullSetupMultiByQuery(ResultSet resultSet, Class cl) throws SQLException {
         ArrayList<Object> arrayList = new ArrayList<>();
         while(resultSet.next()){
             Object object = fullSetupSingleByQuery(resultSet, cl);
@@ -316,7 +293,7 @@ public class OurDatabase {
      * @param cl         {@link Class} Bean的类型
      * @return           {@link Object} 装配好的Bean，可以直接强制转换为需要的Bean类型
      */
-    private Object fullSetupSingleByQuery(ResultSet resultSet, Class cl) {
+    public Object fullSetupSingleByQuery(ResultSet resultSet, Class cl) {
         try {
             Object bean = cl.getDeclaredConstructor().newInstance();
             Field[] fields = cl.getFields();
