@@ -4,6 +4,7 @@ import io.github.potatob6.Annos.AutoIncrement;
 import io.github.potatob6.Annos.PrimaryKey;
 import io.github.potatob6.Annos.SQLSeq;
 import io.github.potatob6.Annos.TableName;
+import io.github.yywl5.Models.ManagerBean;
 //import sun.tools.jconsole.Tab;
 
 import java.awt.print.Book;
@@ -253,7 +254,30 @@ public class OurDatabase {
             return null;
         }
     }
-    public ArrayList<Object> fullSetupMultiByQuery(ResultSet resultSet, Class cl) throws SQLException {
+    /**
+     * 查询特定的用户通过用户ID
+     * @param ManagerBean  Bean，需要提供userID属性
+     * @return          返回 {@link ManagerBean}
+     */
+    public ManagerBean querySpecificManagerByUserID(ManagerBean ManagerBean){
+        String ManagerName = ManagerBean.getUserID();
+        try {
+            Connection connection = this.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from Administrator where userID=?");
+            preparedStatement.setString(1, ManagerName);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                ManagerBean managerBean1 = (ManagerBean) fullSetupSingleByQuery(resultSet, ManagerBean.class);
+                return managerBean1;
+            }
+            return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+    private ArrayList<Object> fullSetupMultiByQuery(ResultSet resultSet, Class cl) throws SQLException {
         ArrayList<Object> arrayList = new ArrayList<>();
         while(resultSet.next()){
             Object object = fullSetupSingleByQuery(resultSet, cl);
