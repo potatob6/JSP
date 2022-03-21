@@ -65,7 +65,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <% if(session.getAttribute("managerlogin")!=null) { %>
                                 <% ManagerBean userBean = (ManagerBean)session.getAttribute("managerlogin"); %>
-                                <li><a href="#"><span class="glyphicon glyphicon-user">管理员:</span>&nbsp;<%=userBean.getNickname() %>，已登录</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>管理员:&nbsp;<%=userBean.getNickname() %>，已登录</a></li>
                                 <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
                                 <% } else {%>
                                 <li><a href="./CloudManageadmin.jsp"><span class="glyphicon glyphicon-user">未登录</span></a></li>

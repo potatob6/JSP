@@ -68,6 +68,18 @@ public class UserBean {
         this.balance = balance;
     }
 
+    @Override
+    public String toString() {
+        return "UserBean{" +
+                "userID='" + userID + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", isVIP=" + isVIP +
+                ", cardID='" + cardID + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
+
     @PrimaryKey
     @SQLSeq(order = 1)
     public String userID;

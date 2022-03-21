@@ -2,6 +2,8 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.*" %>
 <%@ page import="io.github.potatob6.Models.*" %>
+<%@ page import="io.github.yywl5.Models.*" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -49,9 +51,9 @@
 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <% if(session.getAttribute("login")!=null) { %>
-                                <% UserBean userBean = (UserBean)session.getAttribute("login"); %>
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=userBean.getNickname() %>，已登录</a></li>
+                                <% if(session.getAttribute("managerlogin")!=null) { %>
+                                <% ManagerBean userBean = (ManagerBean)session.getAttribute("managerlogin"); %>
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>管理员:&nbsp;<%=userBean.getNickname() %>，已登录</a></li>
                                 <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
                                 <% } else {%>
                                 <li><a href="/JSP/login.jsp"><span class="glyphicon glyphicon-user">未登录</span></a></li>
