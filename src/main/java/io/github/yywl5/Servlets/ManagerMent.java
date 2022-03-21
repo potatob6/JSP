@@ -29,7 +29,7 @@ public class ManagerMent extends HttpServlet {
                 System.out.println("        昵称:" + managerbean1.getNickname());
                 request.getSession().setMaxInactiveInterval(30*60);
                 request.getSession().setAttribute("managerlogin", managerbean1);
-                response.sendRedirect("AdminMainPage.jsp");
+                response.sendRedirect("./AdminMainPage.jsp");
                 return;
             }else{
                 System.out.println("密码错误");
