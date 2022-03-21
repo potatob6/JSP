@@ -52,7 +52,7 @@ body {
     position: fixed;
     top: -3rem;
     left: 0;
-    backdrop-filter: blur(2rem);
+    backdrop-filter: blur(0.2rem);
     width: 100vw;
     height: 3rem;
     display: flex;
