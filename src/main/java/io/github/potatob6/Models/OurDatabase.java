@@ -682,4 +682,40 @@ public class OurDatabase {
         formatter.format("%04d-%02d-%02d", nowDay.get(Calendar.YEAR), nowDay.get(Calendar.MONTH)+1, nowDay.get(Calendar.DAY_OF_MONTH));
         return Date.valueOf(formatter.out().toString());
     }
+
+    /**
+     * 查询所有用户信息
+     * @return
+     */
+    public ArrayList<Object> queryAllUsers(){
+        Connection connection = null;
+        try {
+            connection = this.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from Users;");
+            ResultSet result = preparedStatement.executeQuery();
+            ArrayList<Object> allUsers = fullSetupMultiByQuery(result, UserBean.class);
+            return allUsers;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 查询所有借阅信息
+     * @return
+     */
+    public ArrayList<Object> queryAllBorrows(){
+        Connection connection = null;
+        try {
+            connection = this.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from Borrow;");
+            ResultSet result = preparedStatement.executeQuery();
+            ArrayList<Object> allBorrows = fullSetupMultiByQuery(result, BorrowBean.class);
+            return allBorrows;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
 }
