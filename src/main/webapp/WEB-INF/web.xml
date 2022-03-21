@@ -29,7 +29,15 @@
         <servlet-name>CloudManageAll</servlet-name>
         <servlet-class>io.github.yywl5.Servlets.CloudManageAll</servlet-class>
     </servlet>
+  <servlet>
+    <servlet-name>ManagerMent</servlet-name>
+    <servlet-class>io.github.yywl5.Servlets.ManagerMent</servlet-class>
+  </servlet>
   <servlet-mapping>
+    <servlet-name>ManagerMent</servlet-name>
+    <url-pattern>/ManagerMent</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
     <servlet-name>CloudManageAll</servlet-name>
     <url-pattern>/CloudManageAll</url-pattern>
   </servlet-mapping>
