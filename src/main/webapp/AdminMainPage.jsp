@@ -2,6 +2,7 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.*" %>
 <%@ page import="io.github.potatob6.Models.*" %>
+<%@ page import="io.github.yywl5.Models.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -17,7 +18,20 @@
                 margin: 0 auto;
                 height: auto;
             }
-
+            button {
+                border: none;
+                outline: none;
+                padding: 8px 10px;
+                border-radius: 5px;
+                font-size: small;
+            }
+            .lastTD {
+                display: flex;
+                flex-direction: row;
+            }
+            .lastTD_form {
+                margin-right: 5px;
+            }
         </style>
     </head>
     <body>
@@ -49,12 +63,12 @@
 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <% if(session.getAttribute("login")!=null) { %>
-                                <% UserBean userBean = (UserBean)session.getAttribute("login"); %>
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=userBean.getNickname() %>，已登录</a></li>
+                                <% if(session.getAttribute("managerlogin")!=null) { %>
+                                <% ManagerBean userBean = (ManagerBean)session.getAttribute("managerlogin"); %>
+                                <li><a href="#"><span class="glyphicon glyphicon-user">管理员:</span>&nbsp;<%=userBean.getNickname() %>，已登录</a></li>
                                 <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
                                 <% } else {%>
-                                <li><a href="/JSP/login.jsp"><span class="glyphicon glyphicon-user">未登录</span></a></li>
+                                <li><a href="./CloudManageadmin.jsp"><span class="glyphicon glyphicon-user">未登录</span></a></li>
                                 <% } %>
                             </ul>
                         </div>
@@ -88,9 +102,27 @@
                             BigDecimal originPrice = b.originPrice;
                             Date storageDate = b.storageDate;
                             int storageCount = b.storageCount;
-                            out.println("<tr><td>" + bookID + "</td><td>"  + className + "</td><td>" + bookName + "</td><td>"
-                                    + publisher + "</td><td>" + originPrice + "</td><td>" + storageDate + "</td><td>"
-                                    + storageCount + "</td><tr>");
+                        %>
+                        <tr>
+                            <td><%=bookID %></td>
+                            <td><%=className %></td>
+                            <td><%=bookName %></td>
+                            <td><%=publisher %></td>
+                            <td><%=originPrice %></td>
+                            <td><%=storageDate %></td>
+                            <td><%=storageCount %></td>
+                            <td class="lastTD">
+                                <form class="lastTD_form" action="./changeBook.jsp">
+                                    <button style="background-color: #b9bbdf; color: white">修改信息</button>
+                                    <input name="bookID" value="<%=bookID %>" hidden/>
+                                </form>
+                                <form class="lastTD_form" action="./deleteBook">
+                                    <button style="background-color: #f73859; color: #fff">删除图书</button>
+                                    <input name="bookID" value="<%=bookID %>" hidden/>
+                                </form>
+                            </td>
+                        </tr>
+                    <%
                         }
                     %>
                 </table>

@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.Writer;
 import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.Formatter;
@@ -25,7 +23,7 @@ public class AddBook extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EncodingWrapper encodingWrapper = new EncodingWrapper(req);
 //        String bookID = encodingWrapper.getParameter("bookID");    //不需要提供bookID，自增
-        String classID = encodingWrapper.getParameter("classID");
+        Integer classID = Integer.parseInt(encodingWrapper.getParameter("classID"));
         String bookName = encodingWrapper.getParameter("bookName");
         String publisher = encodingWrapper.getParameter("publisher");
         BigDecimal originPrice = new BigDecimal(encodingWrapper.getParameter("originPrice"));
