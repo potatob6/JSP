@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {"/borrow",
         "/SecretChange.jsp", "/UserMainPage.jsp",
         "/SecretChangeServlet", "/borrow.jsp",
-        "/extend", "/returnBook"})
+        "/extend", "/returnBook", "/sendForum"})
 public class LoginedFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
