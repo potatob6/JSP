@@ -253,7 +253,7 @@ public class OurDatabase {
             return null;
         }
     }
-    private ArrayList<Object> fullSetupMultiByQuery(ResultSet resultSet, Class cl) throws SQLException {
+    public ArrayList<Object> fullSetupMultiByQuery(ResultSet resultSet, Class cl) throws SQLException {
         ArrayList<Object> arrayList = new ArrayList<>();
         while(resultSet.next()){
             Object object = fullSetupSingleByQuery(resultSet, cl);
