@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/deleteBook", "/AdminMainPage.jsp" , "/AllBorrows.jsp" , "/AllUsers.jsp", "/changeBook.jsp", "/changeBook_service"})
+@WebFilter(urlPatterns = {"/deleteBook", "/AdminMainPage.jsp" , "/AllBorrows.jsp" , "/AllUsers.jsp", "/changeBook.jsp", "/changeBook_service",
+                         "/changeUser.jsp", "/changeUser_service"})
 public class ManagerFilter implements Filter {
 
     @Override

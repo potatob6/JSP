@@ -2,6 +2,8 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.*" %>
 <%@ page import="io.github.potatob6.Models.*" %>
+<%@ page import="io.github.yywl5.Models.*" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -17,7 +19,25 @@
                 margin: 0 auto;
                 height: auto;
             }
-
+            body {
+                width: 80%;
+                margin: 0 auto;
+                height: auto;
+            }
+            button {
+                border: none;
+                outline: none;
+                padding: 8px 10px;
+                border-radius: 5px;
+                font-size: small;
+            }
+            .lastTD {
+                display: flex;
+                flex-direction: row;
+            }
+            .lastTD_form {
+                margin-right: 5px;
+            }
         </style>
     </head>
     <body>
@@ -49,9 +69,9 @@
 
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <% if(session.getAttribute("login")!=null) { %>
-                                <% UserBean userBean = (UserBean)session.getAttribute("login"); %>
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=userBean.getNickname() %>，已登录</a></li>
+                                <% if(session.getAttribute("managerlogin")!=null) { %>
+                                <% ManagerBean userBean = (ManagerBean)session.getAttribute("managerlogin"); %>
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span>管理员:&nbsp;<%=userBean.getNickname() %>，已登录</a></li>
                                 <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
                                 <% } else {%>
                                 <li><a href="/JSP/login.jsp"><span class="glyphicon glyphicon-user">未登录</span></a></li>
@@ -86,8 +106,31 @@
                             int isVIP = userBean.isVIP;
                             String cardID = userBean.cardID;
                             BigDecimal balance = userBean.balance;
-                            out.println("<tr><td>" + userID + "</td><td>"  + pwd + "</td><td>" + nickname + "</td><td>"
-                                    + isVIP + "</td><td>" + cardID + "</td><td>" + balance + "</td><tr>");
+                    %>
+                            <tr>
+                                <td><%=userID %></td>
+                                <td><%=pwd %></td>
+                                <td><%=nickname %></td>
+                                <td><%=isVIP %></td>
+                                <% if(cardID==null) { %>
+                                    <td>无借书卡</td>
+                                <% } else { %>
+                                    <td><%=cardID %></td>
+                                <% } %>
+
+                                <td><%=balance %></td>
+                                <td class="lastTD">
+                                    <form class="lastTD_form" action="./changeUser.jsp">
+                                        <button style="background-color: #b9bbdf; color: white">修改信息</button>
+                                        <input name="userID" value="<%=userID %>" hidden/>
+                                    </form>
+                                    <form class="lastTD_form" action="./deleteUser">
+                                        <button style="background-color: #f73859; color: #fff">删除用户</button>
+                                        <input name="bookID" value="<%=userID %>" hidden/>
+                                    </form>
+                                </td>
+                            </tr>
+                    <%
                         }
                     %>
                 </table>
