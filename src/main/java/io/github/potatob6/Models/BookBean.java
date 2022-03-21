@@ -17,7 +17,7 @@ public class BookBean {
     public int bookID;
 
     @SQLSeq(order = 2)
-    public String classID;
+    public int classID;
 
     @SQLSeq(order = 3)
     public String bookName;
@@ -42,11 +42,11 @@ public class BookBean {
         this.bookID = bookID;
     }
 
-    public String getClassID() {
+    public int getClassID() {
         return classID;
     }
 
-    public void setClassID(String classID) {
+    public void setClassID(int classID) {
         this.classID = classID;
     }
 
@@ -88,5 +88,18 @@ public class BookBean {
 
     public void setStorageCount(int storageCount) {
         this.storageCount = storageCount;
+    }
+
+    @Override
+    public String toString() {
+        return "BookBean{" +
+                "bookID=" + bookID +
+                ", classID=" + classID +
+                ", bookName='" + bookName + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", originPrice=" + originPrice +
+                ", storageDate=" + storageDate +
+                ", storageCount=" + storageCount +
+                '}';
     }
 }
