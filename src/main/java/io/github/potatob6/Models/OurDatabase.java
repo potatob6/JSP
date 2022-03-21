@@ -4,6 +4,7 @@ import io.github.potatob6.Annos.AutoIncrement;
 import io.github.potatob6.Annos.PrimaryKey;
 import io.github.potatob6.Annos.SQLSeq;
 import io.github.potatob6.Annos.TableName;
+import io.github.yywl5.Models.ManagerBean;
 //import sun.tools.jconsole.Tab;
 
 import java.awt.print.Book;
@@ -253,6 +254,7 @@ public class OurDatabase {
             return null;
         }
     }
+
     private ArrayList<Object> fullSetupMultiByQuery(ResultSet resultSet, Class cl) throws SQLException {
         ArrayList<Object> arrayList = new ArrayList<>();
         while(resultSet.next()){
