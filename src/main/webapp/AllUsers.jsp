@@ -42,7 +42,7 @@
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="#" >
+                                    <a href="AllBorrows.jsp" >
                                         借阅信息
                                     </a>
                                 </li>
