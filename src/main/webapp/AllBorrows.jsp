@@ -75,7 +75,7 @@
                         <th>期限(日)</th>
                         <th>归还日期</th>
                         <th>超时收费</th>
-                        <th>操作</th>
+                        <!-- <th>操作</th> -->
                     </tr>
                     <%
                         OurDatabase ourDatabase = OurDatabase.getDataBase();
