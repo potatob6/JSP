@@ -1,8 +1,9 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-<web-app>
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
@@ -33,6 +34,30 @@
     <servlet-name>ManagerMent</servlet-name>
     <servlet-class>io.github.yywl5.Servlets.ManagerMent</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DownListServlet</servlet-name>
+    <servlet-class>io.github.yywl5.Servlets.DownListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownListServlet</servlet-name>
+    <url-pattern>/DownListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>io.github.yywl5.Servlets.UploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/UploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DownServlet</servlet-name>
+    <servlet-class>io.github.yywl5.Servlets.DownServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownServlet</servlet-name>
+    <url-pattern>/DownServlet</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ManagerMent</servlet-name>
     <url-pattern>/ManagerMent</url-pattern>
@@ -83,10 +108,6 @@
     <filter-class>io.github.potatob6.Filters.LoginFilter</filter-class>
   </filter>
 <!--  登录过滤器-->
-  <filter>
-    <filter-name>LoginedFilter</filter-name>
-    <filter-class>io.github.potatob6.Filters.LoginedFilter</filter-class>
-  </filter>
 
   <filter-mapping>
     <filter-name>AddBookFilter</filter-name>
