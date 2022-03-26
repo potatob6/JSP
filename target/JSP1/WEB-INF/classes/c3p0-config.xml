@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<c3p0-config>
-  <default-config>
-    <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
-    <property name="jdbcUrl">jdbc:mysql://175.178.183.203:3306/library</property>
-    <property name="user">jsp</property>
-    <property name="password">1008611</property>
-  </default-config>
-</c3p0-config>
