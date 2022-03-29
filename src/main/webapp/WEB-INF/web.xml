@@ -54,6 +54,14 @@
     <servlet-name>DownServlet</servlet-name>
     <servlet-class>io.github.yywl5.Servlets.DownServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>CloudLoginServlet</servlet-name>
+    <servlet-class>io.github.yywl5.Servlets.CloudLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CloudLoginServlet</servlet-name>
+    <url-pattern>/CloudLoginServlet</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>DownServlet</servlet-name>
     <url-pattern>/DownServlet</url-pattern>

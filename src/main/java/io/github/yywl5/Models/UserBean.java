@@ -16,6 +16,7 @@ public class UserBean implements Serializable {
     private Timestamp uploadtime;
     private String description;
     private String ip;
+    private String usernickname;
 
     public int getId() {
         return id;
@@ -76,4 +77,25 @@ public class UserBean implements Serializable {
         this.ip = ip;
     }
 
+    public String getUsernickname() {
+        return usernickname;
+    }
+
+    @Override
+    public String toString() {
+        return "UserBean{" +
+                "id=" + id +
+                ", uuidname='" + uuidname + '\'' +
+                ", realname='" + realname + '\'' +
+                ", savepath='" + savepath + '\'' +
+                ", uploadtime=" + uploadtime +
+                ", description='" + description + '\'' +
+                ", ip='" + ip + '\'' +
+                ", usernickname='" + usernickname + '\'' +
+                '}';
+    }
+
+    public void setUsernickname(String usernickname) {
+        this.usernickname = usernickname;
+    }
 }

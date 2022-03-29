@@ -1,0 +1,73 @@
+/* CSS Document */
+@charset "utf-8";
+*{margin:0; padding:0px;}
+body{font-size:14px;font-family:"微软雅黑";background:#E3E3E5 url(../images/bg.jpg)  50% top scroll no-repeat;color:#5d5d5d;}
+a{text-decoration:none;}
+.left{float:left;}
+.right{float:right;}
+.clear{clear:both;}
+li{list-style:none;}
+img{display:block;border:0px;}
+/*end*/
+#header{width:900px;margin:0 auto;background: url(../images/bg.jpg);}
+#header h1{font-size:24px;color:#664666;padding:5px 0 5px 10px;font-weight:600;}
+#header p{font-size:18px;color:#DB5E5E;font-weight:500;} 
+#nav{width:900px;margin:20px auto;}
+#nav ul li{width:120px;height:30px;line-height:30px;float:left;text-align:center;margin:0px 2px 0px 0px;}
+#nav ul li a{color:#506F70;font-size:16px;width:90px;height:30px;display:block;}
+#nav ul li input{color:#506F70;font-size:16px;width:90px;height:28px;display:block;border-radius: 6px;}
+#nav ul li button{color:#506F70;font-size:16px;width:60px;height:30px;display:block; background-image: url(../images/a.png);background-repeat: no-repeat;border-radius: 3px;}
+#nav ul li a:hover{display:block;width:100px;height:30px;background:#829696;border-radius:3px;color:#FFFFFF;}
+#nav ul li button:hover{display:block;width:60px;height:30px;border-radius:3px;color:#FFFFFF;}
+#nava{display:block;color:#fff;width:140px;height:30px;background:#829696;border-radius:3px;}
+/*header end*/
+#content{width:900px;margin:3px auto;opacity: 0.6 }
+#c_left{width:900px; background:#fff;border-radius:1px;}
+#c_left .s_tuijian{width:900px;height:68px;margin-left:10px;background:url("../images/r_line.jpg") bottom left repeat-x;}
+.s_tuijian h2{width:650px;height:37px;background:url("../images/tj.png") no-repeat;padding:20px 0px 5px 60px;
+color:#D242DF;font-size:18px;margin-left:5px;}
+.s_tuijian h2 span{color:#48D1CC;padding-left:3px;}
+
+#login{ margin: 10px,auto;}
+#login p{margin: 8px auto; color: #AC9696;font-size: 24px; text-align: center;}
+#login form{ width: 300px;margin: 8px;height: auto;}
+#login_d{margin: 10px auto;}
+
+/*文章*/
+#c_left .content_text{width:730px;margin-top:5px;}
+#c_left .content_text .wz{width:725px;margin:5px 0px 10px 0px;color:#1D1A1A;}
+.wz h3{width:300px;height:30px;overflow:hidden;line-height:30px;font-size:17px;font-weight:500;padding-left:5px;color:#325EBD;}
+.wz h3 a{color:#D3535D;}
+.wz h3:hover{padding-left:20px; transition: all 0.5s;-webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s;}
+.wz dl{width:840px;margin-top:3px;}
+.wz dl dt{float:left;width:204px;height:127px;margin-left:5px;display:block;border:1px solid #ccc;}
+.wz dl dt img{padding:2px;}
+.wz dl dd{float:left;width:700px;overflow:hidden;margin-left:0px;}
+.wz dl dd .dd_text_1{ margin-left:26px;width:650px;height:80px;display:block;overflow:hidden;text-indent: 25px;}
+.wz dl dd .dd_text_1 textarea{width: 600px;height: 50px;line-height: 22px;margin-left: 4px;color: #325EBD;border-radius: 5px;}
+.wz dl dd .dd_text_2{line-height:30px;}
+.wz dl dd .dd_text_2 span{padding-left:15px;}
+.wz dl dd .dd_text_2 .author{display:block;width:100px;height:30px; 
+background:url("../images/tx.jpg") 5px 7px no-repeat;padding-left:25px;margin-left:20px;}
+.wz dl dd .dd_text_2 .sj{display:block;width:120px;height:30px;
+background:url("../images/sj.jpg") 5px 7px no-repeat;padding-left:25px;}
+.wz dl dd .dd_text_2 .fl{display:block;width:110px;heigt:30px;text-align:center;}
+.wz dl dd .dd_text_2 .fl a{color:#1D1718;}
+.wz dl dd .dd_text_2 .yd{display:block;width:110px;height:30px;text-align:center;margin-top:3px;}
+.wz dl dd .dd_text_2 .yd a{color:#F55522;display:block;width:80px;height:22px;line-height:22px;
+text-align:center;padddding:2px 5px;border:1px solid #AC9696;border-radius:2px;}
+.wz dl dd .dd_text_2 .yd a:hover{color:#f36;}
+/*left end*/
+/*发表留言*/
+#c_left .content_text{width:730px;margin-top:10px;}
+#c_left .content_text .wz1{width:725px;margin:10px 0px 15px 0px;color:#1D1A1A;}
+
+.wz1 input{width: 300px;height: 28px;line-height: 22px;margin-left: 4px;color: #325EBD;border-radius: 5px;}
+
+.wz1 form{float:left;width:700px;height:600px;} 
+.wz1 form {float:left;width:700px;height:600px;}
+.wz1 textarea{width: 300px;height: 80px;line-height: 22px;margin-left: 4px;color: #325EBD;border-radius: 5px;}
+/*content end*/
+#footer{width:1000px;height:50px;margin:10px auto;border-top:1px solid #ccc;}
+#footer p{text-align:center;font-size:14px;color:#231C25;}
+#footer p a{color:#231C25;}
