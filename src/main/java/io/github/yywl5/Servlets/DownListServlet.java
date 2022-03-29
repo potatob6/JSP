@@ -13,10 +13,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * @author 星包客
+ */
 public class DownListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String sql = "select * from netdisk;";
+        String sql = "select * from netdisk";
         QueryRunner runner = new QueryRunner(DaoUtils.getSource());
         List<UserBean> list = null;
         try {
@@ -27,6 +30,9 @@ public class DownListServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
         request.setAttribute("list", list);
+        String usesrnickname = (String) request.getSession().getAttribute("usernickname");
+        request.getSession().setAttribute("usernickname",usesrnickname);
+        System.out.println(list);
         request.getRequestDispatcher("downlist.jsp")
                 .forward(request, response);
     }

@@ -91,11 +91,11 @@ public class UploadServlet extends HttpServlet {
             UserBean r = new UserBean();
             BeanUtils.populate(r, pmap);
             QueryRunner runner = new QueryRunner(DaoUtils.getSource());
-            String sql = "insert into netdisk values (null,?,?,?,?,?,?)";
+            String sql = "insert into netdisk values (null,?,?,?,?,?,?,?)";
             runner.update(sql, r.getUuidname(), r.getRealname(),
-                    r.getSavepath(),r.getUploadtime(),r.getDescription(), r.getIp());
+                    r.getSavepath(),r.getUploadtime(),r.getDescription(), r.getIp(),r.getUsernickname());
             // 3.重定向回主页
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("upload.jsp");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
